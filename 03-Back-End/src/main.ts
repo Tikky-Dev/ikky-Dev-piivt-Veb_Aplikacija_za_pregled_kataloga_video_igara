@@ -62,4 +62,8 @@ async function main(){
     app.listen(config.server.port);
 }
 
+process.on("uncaughtException", error =>{
+    console.error("Error: ", error);
+});
+
 main();
