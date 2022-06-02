@@ -1,3 +1,4 @@
+import IRouter from './IRouter.interface';
 interface IConfig{
     server: {
         port: number,
@@ -25,7 +26,8 @@ interface IConfig{
         charset: "utf8"| "utf8mb4" | "ascii",
         timezone: string,
         supportBigNumbers: boolean,
-    }
+    },
+    routers: IRouter[],
 }
 
 export default IConfig;

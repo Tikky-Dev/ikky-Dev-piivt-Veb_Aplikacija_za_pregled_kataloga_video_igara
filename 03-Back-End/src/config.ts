@@ -1,4 +1,5 @@
 import IConfig from './common/IConfig.interface';
+import CategoryRouter from './components/category/CategoryRouter.router';
 
 const DevConfig: IConfig = {
     server: {
@@ -18,7 +19,7 @@ const DevConfig: IConfig = {
         logFormat: ":date[iso]\t:remote-addr\tmethod\t:status\tres[content-length] bytes\t:response-time ms",
         filename: "access.log"
     },
-    database:{
+    database: {
         host: "localhost",
         port: 3306,
         user: "PIiVT_Aplikacija",
@@ -27,7 +28,10 @@ const DevConfig: IConfig = {
         charset: "utf8",
         timezone: "+01:00",
         supportBigNumbers: true,
-    }
+    },
+    routers: [
+        new CategoryRouter(),
+    ]
 }
 
 export { DevConfig };

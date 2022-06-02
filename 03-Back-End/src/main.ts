@@ -4,7 +4,6 @@ import IConfig from './common/IConfig.interface';
 import { DevConfig } from "./config";
 import * as fs from "fs";
 import * as morgan from "morgan";
-import CategoryRouter from './components/category/CategoryRouter.router';
 import IAppResource from "./common/IAppResources.interface";
 import * as mysql2 from 'mysql2/promise';
 
@@ -49,9 +48,9 @@ async function main(){
 
 
 
-
-    CategoryRouter.setupRoutes(app, appResources);
-
+    for(const router of config.routers){
+        router.setupRoutes(app, appResources);
+    };
 
 
 
