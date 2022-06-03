@@ -1,15 +1,15 @@
-import CategoryService, { DefaultCategoryAdapterOptions } from './CategoryService.service';
+import PlatformService, { DefaultPlatformAdapterOptions } from './PlatformService.service';
 import { Request, Response } from "express";
 
-class CategoryController{
-    private categoryService: CategoryService;
+class PlatformController{
+    private platformService: PlatformService;
 
-    constructor(categoryService: CategoryService){
-        this.categoryService = categoryService;
+    constructor(platformService: PlatformService){
+        this.platformService = platformService;
     }
 
     async getAll(req:Request, res: Response){
-        this.categoryService.baseGetAll(DefaultCategoryAdapterOptions)
+        this.platformService.baseGetAll(DefaultPlatformAdapterOptions)
             .then(result => {
                 res.send(result);
             })
@@ -20,12 +20,12 @@ class CategoryController{
 
     async getById(req:Request, res: Response){
         const id: number = Number(req.params?.id);
-        this.categoryService.baseGetById(id, DefaultCategoryAdapterOptions)
+        this.platformService.baseGetById(id, DefaultPlatformAdapterOptions)
             .then((result) => {
                 if(result === null){
                    throw {
                        status: 404,
-                       message: "Category not found!"
+                       message: "Platform not found!"
                    }
                }
                res.send(result);
@@ -35,4 +35,4 @@ class CategoryController{
     }
 }
 
-export default CategoryController;
+export default PlatformController;

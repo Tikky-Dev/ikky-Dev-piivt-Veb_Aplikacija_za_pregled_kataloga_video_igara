@@ -1,5 +1,4 @@
 import CategoryModel from "./CategoryModel.model";
-import * as mysql2 from 'mysql2/promise';
 import BaseService from '../../common/BaseService.service';
 import IAdapterOptions from '../../common/IAdapterOptions.interface';
 

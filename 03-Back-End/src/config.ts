@@ -1,5 +1,8 @@
 import IConfig from './common/IConfig.interface';
 import CategoryRouter from './components/category/CategoryRouter.router';
+import PegiRouter from './components/pegi/PegiRouter.router';
+import PlatformRouter from './components/platform/PlatformRouter.router';
+import GameRouter from './components/game/GameRouter.router';
 
 const DevConfig: IConfig = {
     server: {
@@ -31,6 +34,9 @@ const DevConfig: IConfig = {
     },
     routers: [
         new CategoryRouter(),
+        new PegiRouter(),
+        new PlatformRouter(),
+        new GameRouter(),
     ]
 }
 

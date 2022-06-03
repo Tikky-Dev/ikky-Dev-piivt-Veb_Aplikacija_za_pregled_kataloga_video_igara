@@ -1,15 +1,15 @@
-import CategoryService, { DefaultCategoryAdapterOptions } from './CategoryService.service';
+import GameService, { DefaultGameAdapterOptions } from './GameService.service';
 import { Request, Response } from "express";
 
-class CategoryController{
-    private categoryService: CategoryService;
+class GameController{
+    private gameService: GameService;
 
-    constructor(categoryService: CategoryService){
-        this.categoryService = categoryService;
+    constructor(gameService: GameService){
+        this.gameService = gameService;
     }
 
     async getAll(req:Request, res: Response){
-        this.categoryService.baseGetAll(DefaultCategoryAdapterOptions)
+        this.gameService.baseGetAll(DefaultGameAdapterOptions)
             .then(result => {
                 res.send(result);
             })
@@ -20,12 +20,12 @@ class CategoryController{
 
     async getById(req:Request, res: Response){
         const id: number = Number(req.params?.id);
-        this.categoryService.baseGetById(id, DefaultCategoryAdapterOptions)
+        this.gameService.baseGetById(id, DefaultGameAdapterOptions)
             .then((result) => {
                 if(result === null){
                    throw {
                        status: 404,
-                       message: "Category not found!"
+                       message: "Game not found!"
                    }
                }
                res.send(result);
@@ -35,4 +35,4 @@ class CategoryController{
     }
 }
 
-export default CategoryController;
+export default GameController;

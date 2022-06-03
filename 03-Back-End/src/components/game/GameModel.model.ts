@@ -1,5 +1,5 @@
 class GameModel{
-    GameId: number;
+    gameId: number;
     title: string;
     publisher: string;
     publishYear: number;
