@@ -6,8 +6,7 @@ import IRouter from '../../common/IRouter.interface';
 
 class GameRouter implements IRouter{
     public setupRoutes(app: express.Application, resaurces: IAppResource){
-        const gameService: GameService = new GameService(resaurces.databaseConnection);
-        const gameController: CategorController = new CategorController(gameService);
+        const gameController: CategorController = new CategorController(resaurces.services);
 
         app.get("/api/game", gameController.getAll.bind(gameController));
         app.get("/api/game/:id", gameController.getById.bind(gameController));

@@ -1,15 +1,11 @@
 import GameService, { DefaultGameAdapterOptions } from './GameService.service';
 import { Request, Response } from "express";
+import BaseController from '../../common/BaseController.controller';
 
-class GameController{
-    private gameService: GameService;
-
-    constructor(gameService: GameService){
-        this.gameService = gameService;
-    }
+class GameController extends BaseController{
 
     async getAll(req:Request, res: Response){
-        this.gameService.baseGetAll(DefaultGameAdapterOptions)
+        this.service.game.baseGetAll(DefaultGameAdapterOptions)
             .then(result => {
                 res.send(result);
             })
@@ -20,7 +16,7 @@ class GameController{
 
     async getById(req:Request, res: Response){
         const id: number = Number(req.params?.id);
-        this.gameService.baseGetById(id, DefaultGameAdapterOptions)
+        this.service.game.baseGetById(id, DefaultGameAdapterOptions)
             .then((result) => {
                 if(result === null){
                    throw {

@@ -31,6 +31,10 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
 
         return game;
     }
+
+    async getAllByPegiId(pegiId: number, options: IGameAdapterOptions): Promise<GameModel[]>{
+        return this.baseGetAllByFealdNameAndValue('pegi_id', pegiId, options);
+    }
 }
 
 export default GameService;
