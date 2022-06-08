@@ -6,8 +6,7 @@ import IRouter from '../../common/IRouter.interface';
 
 class PegiRouter implements IRouter{
     public setupRoutes(app: express.Application, resaurces: IAppResource){
-        const pegiService: PegiService = new PegiService(resaurces.databaseConnection);
-        const pegiController: CategorController = new CategorController(pegiService);
+        const pegiController: CategorController = new CategorController(resaurces.services);
 
         app.get("/api/pegi", pegiController.getAll.bind(pegiController));
         app.get("/api/pegi/:id", pegiController.getById.bind(pegiController));

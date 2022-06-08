@@ -1,15 +1,11 @@
 import PegiService, { DefaultPegiAdapterOptions } from './PegiService.service';
 import { Request, Response } from "express";
+import BaseController from '../../common/BaseController.controller';
 
-class PegiController{
-    private pegiService: PegiService;
-
-    constructor(pegiService: PegiService){
-        this.pegiService = pegiService;
-    }
+class PegiController extends BaseController{
 
     async getAll(req:Request, res: Response){
-        this.pegiService.baseGetAll(DefaultPegiAdapterOptions)
+        this.service.pegi.baseGetAll(DefaultPegiAdapterOptions)
             .then(result => {
                 res.send(result);
             })
@@ -20,7 +16,7 @@ class PegiController{
 
     async getById(req:Request, res: Response){
         const id: number = Number(req.params?.id);
-        this.pegiService.baseGetById(id, DefaultPegiAdapterOptions)
+        this.service.pegi.baseGetById(id, {loadGames: true,})
             .then((result) => {
                 if(result === null){
                    throw {

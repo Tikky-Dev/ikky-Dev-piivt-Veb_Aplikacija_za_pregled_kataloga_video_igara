@@ -1,15 +1,12 @@
 import PlatformService, { DefaultPlatformAdapterOptions } from './PlatformService.service';
 import { Request, Response } from "express";
+import BaseService from '../../common/BaseService.service';
+import BaseController from '../../common/BaseController.controller';
 
-class PlatformController{
-    private platformService: PlatformService;
-
-    constructor(platformService: PlatformService){
-        this.platformService = platformService;
-    }
+class PlatformController extends BaseController{
 
     async getAll(req:Request, res: Response){
-        this.platformService.baseGetAll(DefaultPlatformAdapterOptions)
+        this.service.platform.baseGetAll(DefaultPlatformAdapterOptions)
             .then(result => {
                 res.send(result);
             })
@@ -20,7 +17,7 @@ class PlatformController{
 
     async getById(req:Request, res: Response){
         const id: number = Number(req.params?.id);
-        this.platformService.baseGetById(id, DefaultPlatformAdapterOptions)
+        this.service.platform.baseGetById(id, DefaultPlatformAdapterOptions)
             .then((result) => {
                 if(result === null){
                    throw {
