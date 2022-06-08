@@ -1,6 +1,7 @@
 import CategoryModel from "./CategoryModel.model";
 import BaseService from '../../common/BaseService.service';
 import IAdapterOptions from '../../common/IAdapterOptions.interface';
+import IAddCategory from "./dto/IAddCategory.dto";
 
 interface ICategoryAdapterOptions extends IAdapterOptions{
 
@@ -25,6 +26,11 @@ class CategoryService extends BaseService<CategoryModel, ICategoryAdapterOptions
         category.isActive = data?.is_active === 1;
 
         return category;
+    }
+
+
+    public async add(data: IAddCategory): Promise<CategoryModel> {
+        return this.baseAdd(data, DefaultCategoryAdapterOptions);
     }
 }
 
