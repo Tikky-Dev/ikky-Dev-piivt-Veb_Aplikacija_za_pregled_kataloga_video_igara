@@ -6,25 +6,41 @@ import * as fs from "fs";
 import * as morgan from "morgan";
 import IAppResource from "./common/IAppResources.interface";
 import * as mysql2 from 'mysql2/promise';
+import CategoryService from './components/category/CategoryService.service';
+import GameService from './components/game/GameService.service';
+import PegiService from './components/pegi/PegiService.service';
+import PlatformService from './components/platform/PlatformService.service';
 
 async function main(){
     const app: express.Application = express();
 
-    
-
     const config: IConfig = DevConfig;
+
+    const db = await mysql2.createConnection({
+        host: config.database.host,
+        port: config.database.port,
+        user: config.database.user,
+        password: config.database.password,
+        database: config.database.database,
+        charset: config.database.charset,
+        timezone: config.database.timezone,
+        supportBigNumbers: config.database.supportBigNumbers,
+    });
+
     const appResources: IAppResource = {
-        databaseConnection: await mysql2.createConnection({
-            host: config.database.host,
-            port: config.database.port,
-            user: config.database.user,
-            password: config.database.password,
-            database: config.database.database,
-            charset: config.database.charset,
-            timezone: config.database.timezone,
-            supportBigNumbers: config.database.supportBigNumbers,
-        }),
+        databaseConnection: db,
+        services: {
+            category: null,
+            game: null,
+            pegi: null,
+            platform: null,
+        }
     };
+
+    appResources.services.category = new CategoryService(appResources);
+    appResources.services.game = new GameService(appResources);
+    appResources.services.pegi = new PegiService(appResources);
+    appResources.services.platform = new PlatformService(appResources);
 
     fs.mkdirSync(config.logger.path, {
         mode: 0o755,
