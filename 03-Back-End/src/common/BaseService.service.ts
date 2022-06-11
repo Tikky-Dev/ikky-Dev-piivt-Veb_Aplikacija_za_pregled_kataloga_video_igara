@@ -129,6 +129,49 @@ abstract class BaseService<ReturnModel extends IModel, AdapterOptions extends IA
         });
     }
 
+    protected async baseEditById(id: number, data: IServiceData, options: AdapterOptions): Promise<ReturnModel>{
+        const tableName = this.tableName();
+
+        return new Promise((resolve, reject) => {
+            const properties = Object.getOwnPropertyNames(data);
+
+            if(properties.length === 0){
+                return reject({
+                    message: "There is nothing to change",
+                });
+            }
+
+            const sqlPairs = properties.map(property => " " + property + " = ?").join(", ");
+            const values = properties.map(property => data[property]);
+            values.push(id);
+
+            const sql:string = "UPDATE `" + tableName + "` SET " + sqlPairs + " WHERE `" + tableName + "_id` =?;";
+
+            this.db.execute(sql, values)
+                .then(async result => {
+                    const info: any = result;
+
+                    if(info[0]?.affectedRows === 0){
+                        return reject({
+                            message: "Could not change eny items in the "+ tableName +"table",
+                        });
+                    }
+
+                    const item: ReturnModel|null = await this.baseGetById(id, options);
+
+                    if(item === null){
+                        return reject({
+                            message: "Could not find this items in the "+ tableName +"table",
+                        });
+                    }
+
+                    resolve(item);
+                }).catch(error => {
+                    reject(error);
+                });
+        });
+    }
+
 }
 
 export default BaseService;

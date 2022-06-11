@@ -11,6 +11,8 @@ class CategoryRouter implements IRouter{
         app.get("/api/category/:id", categoryController.getById.bind(categoryController));
         
         app.post("/api/category", categoryController.add.bind(categoryController));
+
+        app.put("/api/category/:cid", categoryController.edit.bind(categoryController));
     }
 }
 

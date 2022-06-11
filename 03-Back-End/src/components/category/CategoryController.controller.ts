@@ -2,6 +2,7 @@ import CategoryService, { DefaultCategoryAdapterOptions } from './CategoryServic
 import { Request, Response } from "express";
 import BaseController from '../../common/BaseController.controller';
 import IAddCategory, { AddCategoryValidator } from './dto/IAddCategory.dto';
+import { EditCategoryValidator, IEditCategoryDto } from './dto/IEditCategory.dto';
 
 class CategoryController extends BaseController{
     
@@ -41,6 +42,39 @@ class CategoryController extends BaseController{
         }
 
         this.service.category.add(data)
+        .then(result => {
+            res.send(result);
+        })
+        .catch(error => {
+            res.status(400).send(error?.message);
+        });
+    }
+
+    async edit(req: Request, res: Response) {
+        const id: number = Number(req.params?.cid);
+        const data = req.body as IEditCategoryDto;
+
+        if (!EditCategoryValidator(data)) {
+            return res.status(400).send(EditCategoryValidator.errors);
+        }
+
+        this.service.category.baseGetById(id, DefaultCategoryAdapterOptions)
+        .then(result => {
+            if(result === null){
+                throw {
+                    status: 404,
+                    message: "Category not found",
+                }
+            }
+        })
+        .then(() => {
+            return this.service.category.edditById(
+                id,
+                {
+                    category_name: data.categoryName
+                },
+                DefaultCategoryAdapterOptions)
+        })
         .then(result => {
             res.send(result);
         })
