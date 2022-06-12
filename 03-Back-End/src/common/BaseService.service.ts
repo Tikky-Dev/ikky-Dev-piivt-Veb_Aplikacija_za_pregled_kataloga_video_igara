@@ -54,7 +54,10 @@ abstract class BaseService<ReturnModel extends IModel, AdapterOptions extends IA
         const tableName = this.tableName();
 
         return new Promise<ReturnModel>((resolve, reject) => {
-            const sql: string = `SELECT * FROM \`${tableName}\` WHERE \`${tableName}_id\` = ? AND \`is_active\` = 1 ;`;
+            const sql: string = `SELECT * FROM \`${tableName}\` WHERE \`${tableName}_id\` = ? ;`;
+
+            // if(user) => sql + `AND \`is_active\` = 1` 
+
             // typeorm --> pogledati!!
             this.db.execute(sql, [ id ])
                 .then(async ([ rows ]) => {

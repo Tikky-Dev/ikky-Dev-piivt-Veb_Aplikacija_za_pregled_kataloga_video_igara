@@ -3,6 +3,7 @@ import { Request, Response } from "express";
 import BaseController from '../../common/BaseController.controller';
 import IAddCategory, { AddCategoryValidator } from './dto/IAddCategory.dto';
 import { EditCategoryValidator, IEditCategoryDto } from './dto/IEditCategory.dto';
+import IEditCategory from './dto/IEditCategory.dto';
 
 class CategoryController extends BaseController{
     
@@ -58,6 +59,7 @@ class CategoryController extends BaseController{
             return res.status(400).send(EditCategoryValidator.errors);
         }
 
+
         this.service.category.baseGetById(id, DefaultCategoryAdapterOptions)
         .then(result => {
             if(result === null){
@@ -68,11 +70,20 @@ class CategoryController extends BaseController{
             }
         })
         .then(() => {
+
+            const serviceData: IEditCategory = {};
+
+            if(data.categoryName !== undefined){
+                serviceData.category_name = data.categoryName
+            }
+
+            if(data.isActive !== undefined){
+                serviceData.is_active = data.isActive ? 1:0
+            }
+
             return this.service.category.edditById(
                 id,
-                {
-                    category_name: data.categoryName
-                },
+                serviceData,
                 DefaultCategoryAdapterOptions)
         })
         .then(result => {
