@@ -10,6 +10,10 @@ class PlatformRouter implements IRouter{
 
         app.get("/api/platform", platformController.getAll.bind(platformController));
         app.get("/api/platform/:id", platformController.getById.bind(platformController));
+    
+        app.post("/api/platform", platformController.add.bind(platformController));
+
+        app.put("/api/platform/:id", platformController.edit.bind(platformController));
     }
 }
 

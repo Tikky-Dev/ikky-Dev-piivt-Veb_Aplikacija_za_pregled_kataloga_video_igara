@@ -1,6 +1,8 @@
 import PlatformModel from "./PlatformModel.model";
 import BaseService from '../../common/BaseService.service';
 import IAdapterOptions from '../../common/IAdapterOptions.interface';
+import IAddPlatform from './dto/IAddPlatform.dto';
+import IEditPlatform from './dto/IEditPlatform.dto';
 
 interface IPlatformAdapterOptions extends IAdapterOptions{
 
@@ -25,6 +27,14 @@ class PlatformService extends BaseService<PlatformModel, IPlatformAdapterOptions
         platform.isActive = data?.is_active === 1;
 
         return platform;
+    }
+
+    public async add(data: IAddPlatform): Promise<PlatformModel>{
+        return this.baseAdd(data, DefaultPlatformAdapterOptions);
+    }
+
+    public async editById(platformId: number, data: IEditPlatform, options: IPlatformAdapterOptions = DefaultPlatformAdapterOptions): Promise<PlatformModel>{
+        return this.baseEditById(platformId, data, options);
     }
 }
 
