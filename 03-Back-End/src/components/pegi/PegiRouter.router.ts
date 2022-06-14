@@ -10,6 +10,10 @@ class PegiRouter implements IRouter{
 
         app.get("/api/pegi", pegiController.getAll.bind(pegiController));
         app.get("/api/pegi/:id", pegiController.getById.bind(pegiController));
+
+        app.post("/api/pegi", pegiController.add.bind(pegiController));
+
+        app.put("/api/pegi/:id", pegiController.edit.bind(pegiController));
     }
 }
 

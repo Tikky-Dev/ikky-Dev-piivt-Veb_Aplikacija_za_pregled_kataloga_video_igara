@@ -1,6 +1,8 @@
 import BaseService from '../../common/BaseService.service';
 import IAdapterOptions from '../../common/IAdapterOptions.interface';
 import PegiModel from './PegiModel.model';
+import IAddPegi from './dto/IAddPegi.dto';
+import IEditPegi from './dto/IEditPegi.dto';
 
 interface IPegiAdapterOptions extends IAdapterOptions{
     loadGames: boolean;
@@ -28,6 +30,15 @@ class PegiService extends BaseService<PegiModel, IPegiAdapterOptions>{
         }
 
         return pegi;
+    }
+
+
+    public async add(data: IAddPegi): Promise<PegiModel> {
+        return this.baseAdd(data, DefaultPegiAdapterOptions);
+    }
+
+    public async edditById(pegiId: number, data: IEditPegi, options: IPegiAdapterOptions = DefaultPegiAdapterOptions): Promise<PegiModel>{
+        return this.baseEditById(pegiId, data,options);
     }
 }
 
