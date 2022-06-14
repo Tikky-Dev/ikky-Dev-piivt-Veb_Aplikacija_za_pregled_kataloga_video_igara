@@ -1,6 +1,8 @@
 import GameModel from "./GameModel.model";
 import BaseService from '../../common/BaseService.service';
 import IAdapterOptions from '../../common/IAdapterOptions.interface';
+import IAddGame from './dto/IAddGame.dto';
+import IEditGame from './dto/IEditGame.dto';
 
 interface IGameAdapterOptions extends IAdapterOptions{
 
@@ -35,6 +37,15 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
     async getAllByPegiId(pegiId: number, options: IGameAdapterOptions): Promise<GameModel[]>{
         return this.baseGetAllByFealdNameAndValue('pegi_id', pegiId, options);
     }
+
+    public async add(data: IAddGame): Promise<GameModel> {
+        return this.baseAdd(data, DefaultGameAdapterOptions);
+    }
+
+    public async edditById(gameId: number, data: IEditGame, options: IGameAdapterOptions = DefaultGameAdapterOptions): Promise<GameModel>{
+        return this.baseEditById(gameId, data,options);
+    }
+
 }
 
 export default GameService;

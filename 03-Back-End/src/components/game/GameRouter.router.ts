@@ -10,6 +10,11 @@ class GameRouter implements IRouter{
 
         app.get("/api/game", gameController.getAll.bind(gameController));
         app.get("/api/game/:id", gameController.getById.bind(gameController));
+
+        app.post("/api/game", gameController.add.bind(gameController));
+
+        app.put("/api/game/:id", gameController.edit.bind(gameController));
+
     }
 }
 
