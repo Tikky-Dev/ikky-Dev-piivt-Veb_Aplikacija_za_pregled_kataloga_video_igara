@@ -18,7 +18,7 @@ class GameController extends BaseController{
 
     async getById(req:Request, res: Response){
         const id: number = Number(req.params?.id);
-        this.service.game.baseGetById(id, DefaultGameAdapterOptions)
+        this.service.game.baseGetById(id, {loadCategories: true})
             .then((result) => {
                 if(result === null){
                    throw {

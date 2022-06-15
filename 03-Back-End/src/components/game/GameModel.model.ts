@@ -1,3 +1,5 @@
+import CategoryModel from '../category/CategoryModel.model';
+
 class GameModel{
     gameId: number;
     title: string;
@@ -7,6 +9,8 @@ class GameModel{
     price: number;
     pegiId: number;
     isActive: boolean;
+
+    categories: CategoryModel[];
 }
 
 export default GameModel;

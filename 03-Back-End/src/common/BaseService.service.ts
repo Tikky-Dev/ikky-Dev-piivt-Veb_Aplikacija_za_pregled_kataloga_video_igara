@@ -29,7 +29,7 @@ abstract class BaseService<ReturnModel extends IModel, AdapterOptions extends IA
         const tableName = this.tableName();
 
         return new Promise<ReturnModel[]>((resolve, reject) => {
-            const sql: string = `SELECT * FROM \`${tableName}\` WHERE \`is_active\` = 1;`;
+            const sql: string = `SELECT * FROM \`${tableName}\`;`;
             // typeorm --> pogledati!!
             this.db.execute(sql)
                 .then(async ([ rows ]) => {
@@ -56,9 +56,6 @@ abstract class BaseService<ReturnModel extends IModel, AdapterOptions extends IA
         return new Promise<ReturnModel>((resolve, reject) => {
             const sql: string = `SELECT * FROM \`${tableName}\` WHERE \`${tableName}_id\` = ? ;`;
 
-            // if(user) => sql + `AND \`is_active\` = 1` 
-
-            // typeorm --> pogledati!!
             this.db.execute(sql, [ id ])
                 .then(async ([ rows ]) => {
                     if(rows === undefined){
@@ -174,6 +171,34 @@ abstract class BaseService<ReturnModel extends IModel, AdapterOptions extends IA
                 });
         });
     }
+
+
+    protected async baseGetAllFromTableByFieldNameAndValue<OwnReturnType>(tableName: string, fieldName: string, value: any): Promise<OwnReturnType[]> {
+        return new Promise(
+            (resolve, reject) => {
+                const sql =  `SELECT * FROM \`${ tableName }\` WHERE \`${ fieldName }\` = ?;`;
+
+                this.db.execute(sql, [ value ])
+                .then( async ( [ rows ] ) => {
+                    if (rows === undefined) {
+                        return resolve([]);
+                    }
+
+                    const items: OwnReturnType[] = [];
+
+                    for (const row of rows as mysql2.RowDataPacket[]) {
+                        items.push(row as OwnReturnType);
+                    }
+
+                    resolve(items);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+            }
+        );
+    }
+
 
 }
 

@@ -5,11 +5,11 @@ import IAddGame from './dto/IAddGame.dto';
 import IEditGame from './dto/IEditGame.dto';
 
 interface IGameAdapterOptions extends IAdapterOptions{
-
+    loadCategories: boolean;
 }
 
 const DefaultGameAdapterOptions: IGameAdapterOptions = {
-
+    loadCategories: false,
 }
 
 class GameService extends BaseService<GameModel, IGameAdapterOptions>{
@@ -19,7 +19,7 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
 
 
 
-    protected async adaptToModel(data: any): Promise<GameModel>{
+    protected async adaptToModel(data: any, options: IGameAdapterOptions): Promise<GameModel>{
         const game: GameModel = new GameModel();
 
         game.gameId = Number(data?.game_id);
@@ -30,6 +30,10 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
         game.price = Number(data?.price);
         game.pegiId = Number(data?.pegi_id);
         game.isActive = data?.is_active === 1;
+
+        if(options.loadCategories){
+            game.categories = await this.services.category.getAllByGameId(game.gameId, DefaultGameAdapterOptions);
+        }
 
         return game;
     }
@@ -49,4 +53,4 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
 }
 
 export default GameService;
-export { DefaultGameAdapterOptions };
+export { DefaultGameAdapterOptions, IGameAdapterOptions };
