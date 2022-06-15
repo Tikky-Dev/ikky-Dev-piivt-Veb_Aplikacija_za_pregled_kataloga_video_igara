@@ -6,10 +6,12 @@ import IEditGame from './dto/IEditGame.dto';
 
 interface IGameAdapterOptions extends IAdapterOptions{
     loadCategories: boolean;
+    loadPlatforms: boolean;
 }
 
 const DefaultGameAdapterOptions: IGameAdapterOptions = {
     loadCategories: false,
+    loadPlatforms: false,
 }
 
 class GameService extends BaseService<GameModel, IGameAdapterOptions>{
@@ -33,6 +35,10 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
 
         if(options.loadCategories){
             game.categories = await this.services.category.getAllByGameId(game.gameId, DefaultGameAdapterOptions);
+        }
+
+        if(options.loadCategories){
+            game.platforms = await this.services.platform.getAllByGameId(game.gameId, DefaultGameAdapterOptions);
         }
 
         return game;

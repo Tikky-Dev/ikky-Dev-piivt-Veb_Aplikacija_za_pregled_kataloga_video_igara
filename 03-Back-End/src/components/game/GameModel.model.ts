@@ -1,4 +1,5 @@
 import CategoryModel from '../category/CategoryModel.model';
+import PlatformModel from '../platform/PlatformModel.model';
 
 class GameModel{
     gameId: number;
@@ -11,6 +12,7 @@ class GameModel{
     isActive: boolean;
 
     categories: CategoryModel[];
+    platforms: PlatformModel[];
 }
 
 export default GameModel;
