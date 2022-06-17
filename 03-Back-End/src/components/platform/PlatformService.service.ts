@@ -6,11 +6,11 @@ import IEditPlatform from './dto/IEditPlatform.dto';
 import { IGameAdapterOptions } from "../game/GameService.service";
 
 interface IPlatformAdapterOptions extends IAdapterOptions{
-
+    loadGames: boolean;
 }
 
 const DefaultPlatformAdapterOptions: IPlatformAdapterOptions = {
-
+    loadGames: false,
 }
 
 class PlatformService extends BaseService<PlatformModel, IPlatformAdapterOptions>{
@@ -20,12 +20,17 @@ class PlatformService extends BaseService<PlatformModel, IPlatformAdapterOptions
 
 
 
-    protected async adaptToModel(data: any): Promise<PlatformModel>{
+    protected async adaptToModel(data: any, options: IPlatformAdapterOptions): Promise<PlatformModel>{
         const platform: PlatformModel = new PlatformModel();
 
         platform.platformId = Number(data?.platform_id);
         platform.name = data?.platform_name;
         platform.isActive = data?.is_active === 1;
+
+        if(options.loadGames){
+            platform.games = await this.services.game.getAllByPlatformId(platform.platformId, DefaultPlatformAdapterOptions);
+        }
+
 
         return platform;
     }
@@ -52,7 +57,7 @@ class PlatformService extends BaseService<PlatformModel, IPlatformAdapterOptions
 
                 const platforms: PlatformModel[] = await Promise.all(
                     result.map(async row => {
-                        const platform = await (await this.baseGetById(row.platform_id, {}));
+                        const platform = await (await this.baseGetById(row.platform_id, DefaultPlatformAdapterOptions));
 
                         return {
                             platformId: row.platform_id,
@@ -73,4 +78,4 @@ class PlatformService extends BaseService<PlatformModel, IPlatformAdapterOptions
 }
 
 export default PlatformService;
-export { DefaultPlatformAdapterOptions };
+export { DefaultPlatformAdapterOptions, IPlatformAdapterOptions };

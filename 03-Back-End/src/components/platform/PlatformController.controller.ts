@@ -19,7 +19,7 @@ class PlatformController extends BaseController{
 
     async getById(req:Request, res: Response){
         const id: number = Number(req.params?.id);
-        this.service.platform.baseGetById(id, DefaultPlatformAdapterOptions)
+        this.service.platform.baseGetById(id, {loadGames: true})
             .then((result) => {
                 if(result === null){
                    throw {

@@ -4,6 +4,7 @@ import IAdapterOptions from '../../common/IAdapterOptions.interface';
 import IAddGame from './dto/IAddGame.dto';
 import IEditGame from './dto/IEditGame.dto';
 import { ICategoryAdapterOptions } from "../category/CategoryService.service";
+import { IPlatformAdapterOptions } from "../platform/PlatformService.service";
 
 interface IGameAdapterOptions extends IAdapterOptions{
     loadCategories: boolean;
@@ -75,6 +76,45 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
 
                         return {
                             gameId: row.category_id,
+                            name: game.title,
+                            title: game.title,
+                            publisher: game.publisher,
+                            publishYear: game.publishYear,
+                            description: game.description,
+                            price: game.price,
+                            pegiId: game.pegiId,
+                            isActive: game.isActive,
+                        }
+
+                    })
+                );
+
+                resolve(games);
+            })
+            .catch(error => {
+                reject(error);
+            });
+        });
+    }
+
+    public async getAllByPlatformId(platformId: number, options: IPlatformAdapterOptions): Promise<GameModel[]>{
+        return new Promise((resolve, reject) => {
+            this.baseGetAllFromTableByFieldNameAndValue<{
+                game_category_id: number,
+                game_id: number,
+                platform_id: number,
+            }>("game_platform", "platform_id", platformId)
+            .then(async result => {
+                if(result.length === 0){
+                    return resolve([]);
+                }
+
+                const games: GameModel[] = await Promise.all(
+                    result.map(async row => {
+                        const game = await (await this.baseGetById(row.game_id, DefaultGameAdapterOptions));
+
+                        return {
+                            gameId: row.platform_id,
                             name: game.title,
                             title: game.title,
                             publisher: game.publisher,
