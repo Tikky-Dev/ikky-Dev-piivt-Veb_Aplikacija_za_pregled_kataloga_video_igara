@@ -3,6 +3,7 @@ import BaseService from '../../common/BaseService.service';
 import IAdapterOptions from '../../common/IAdapterOptions.interface';
 import IAddGame from './dto/IAddGame.dto';
 import IEditGame from './dto/IEditGame.dto';
+import { ICategoryAdapterOptions } from "../category/CategoryService.service";
 
 interface IGameAdapterOptions extends IAdapterOptions{
     loadCategories: boolean;
@@ -54,6 +55,45 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
 
     public async edditById(gameId: number, data: IEditGame, options: IGameAdapterOptions = DefaultGameAdapterOptions): Promise<GameModel>{
         return this.baseEditById(gameId, data,options);
+    }
+
+    public async getAllByCategoryId(categoryId: number, options: ICategoryAdapterOptions): Promise<GameModel[]>{
+        return new Promise((resolve, reject) => {
+            this.baseGetAllFromTableByFieldNameAndValue<{
+                game_category_id: number,
+                game_id: number,
+                category_id: number,
+            }>("game_category", "category_id", categoryId)
+            .then(async result => {
+                if(result.length === 0){
+                    return resolve([]);
+                }
+
+                const games: GameModel[] = await Promise.all(
+                    result.map(async row => {
+                        const game = await (await this.baseGetById(row.game_id, DefaultGameAdapterOptions));
+
+                        return {
+                            gameId: row.category_id,
+                            name: game.title,
+                            title: game.title,
+                            publisher: game.publisher,
+                            publishYear: game.publishYear,
+                            description: game.description,
+                            price: game.price,
+                            pegiId: game.pegiId,
+                            isActive: game.isActive,
+                        }
+
+                    })
+                );
+
+                resolve(games);
+            })
+            .catch(error => {
+                reject(error);
+            });
+        });
     }
 
 }

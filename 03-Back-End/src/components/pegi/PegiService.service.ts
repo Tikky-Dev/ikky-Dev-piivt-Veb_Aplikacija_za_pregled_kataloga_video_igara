@@ -26,7 +26,7 @@ class PegiService extends BaseService<PegiModel, IPegiAdapterOptions>{
         pegi.isActive = data?.is_active === 1;
 
         if(options.loadGames){
-            pegi.games = await this.services.game.getAllByPegiId(pegi.pegiId, {});
+            pegi.games = await this.services.game.getAllByPegiId(pegi.pegiId, {loadCategories: true, loadPlatforms: true});
         }
 
         return pegi;

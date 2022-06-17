@@ -11,8 +11,8 @@ class GameModel{
     pegiId: number;
     isActive: boolean;
 
-    categories: CategoryModel[];
-    platforms: PlatformModel[];
+    categories?: CategoryModel[];
+    platforms?: PlatformModel[];
 }
 
 export default GameModel;

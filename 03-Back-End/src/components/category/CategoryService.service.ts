@@ -6,11 +6,11 @@ import IEditCategory from './dto/IEditCategory.dto';
 import { IGameAdapterOptions } from "../game/GameService.service";
 
 interface ICategoryAdapterOptions extends IAdapterOptions{
-
+    loadGames: boolean;
 }
 
 const DefaultCategoryAdapterOptions: ICategoryAdapterOptions = {
-
+    loadGames:false,
 }
 
 class CategoryService extends BaseService<CategoryModel, ICategoryAdapterOptions>{
@@ -20,12 +20,16 @@ class CategoryService extends BaseService<CategoryModel, ICategoryAdapterOptions
 
 
 
-    protected async adaptToModel(data: any): Promise<CategoryModel>{
+    protected async adaptToModel(data: any, options: ICategoryAdapterOptions): Promise<CategoryModel>{
         const category: CategoryModel = new CategoryModel();
 
         category.categoryId = Number(data?.category_id);
         category.name = data?.category_name;
         category.isActive = data?.is_active === 1;
+
+        if(options.loadGames){
+            category.games = await this.services.game.getAllByCategoryId(category.categoryId, DefaultCategoryAdapterOptions);
+        }
 
         return category;
     }
@@ -53,7 +57,7 @@ class CategoryService extends BaseService<CategoryModel, ICategoryAdapterOptions
 
                 const categories: CategoryModel[] = await Promise.all(
                     result.map(async row => {
-                        const category = await (await this.baseGetById(row.category_id, {}));
+                        const category = await (await this.baseGetById(row.category_id, DefaultCategoryAdapterOptions));
 
                         return {
                             categoryId: row.category_id,
