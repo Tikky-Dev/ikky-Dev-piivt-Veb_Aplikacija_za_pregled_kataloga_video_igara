@@ -63,5 +63,6 @@ const EditGameValidator = ajv.compile({
     additionalProperties: false,
 });
 
+
 export default IEditGame;
 export { EditGameValidator, IEditGameDto };

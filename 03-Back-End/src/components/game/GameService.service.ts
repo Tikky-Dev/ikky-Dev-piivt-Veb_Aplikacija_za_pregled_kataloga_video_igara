@@ -136,6 +136,39 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
         });
     }
 
+
+    public async addNewCategoryToTheGame(gameId: number, categoryId: number): Promise<number>{
+        return new Promise((resolve, reject) => {
+            const sql: string = "INSERT game_category SET game_id = ?, category_id = ?;";
+            
+
+            this.db.execute(sql, [ gameId, categoryId ])
+            .then(async result => {
+                const info: any = result;
+                resolve(Number(info[0]?.insertId));
+            })
+            .catch(error => {
+                reject(error);
+            });
+        });
+    }
+
+
+    public async deleteCategoryFromTheGame(gameId: number, categoryId: number): Promise<number>{
+        return new Promise((resolve, reject) => {
+            const sql: string = "DELETE FROM game_category WHERE game_id = ? AND category_id = ?;";
+
+            this.db.execute(sql, [ gameId, categoryId ])
+            .then(async result => {
+                const info: any = result;
+                resolve(Number(info[0]?.insertId));
+            })
+            .catch(error => {
+                reject(error);
+            });
+        });
+    }
+
 }
 
 export default GameService;

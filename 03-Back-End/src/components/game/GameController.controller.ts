@@ -115,6 +115,33 @@ class GameController extends BaseController{
             res.status(400).send(error?.message);
         });
     }
+
+
+    async addCategoryToGame(req: Request, res:Response){
+        const gameId: number = Number(req.params?.gid);
+        const categoryId: number = Number(req.params?.cid);
+
+        this.service.game.addNewCategoryToTheGame(gameId, categoryId)
+        .then(result => {
+            res.status(200).send(result);
+        })
+        .catch(error => {
+            res.status(400).send(error?.message);
+        });
+    }
+
+    async deleteCategoryFromGame(req: Request, res:Response){
+        const gameId: number = Number(req.params?.gid);
+        const categoryId: number = Number(req.params?.cid);
+
+        this.service.game.deleteCategoryFromTheGame(gameId, categoryId)
+        .then(result => {
+            res.status(200).send(result);
+        })
+        .catch(error => {
+            res.status(400).send(error?.message);
+        });
+    }
 }
 
 export default GameController;

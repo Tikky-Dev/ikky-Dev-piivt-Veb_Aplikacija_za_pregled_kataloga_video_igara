@@ -1,4 +1,3 @@
-import GameService from './GameService.service';
 import CategorController from './GameController.controller';
 import * as express from 'express';
 import IAppResource from '../../common/IAppResources.interface';
@@ -12,8 +11,11 @@ class GameRouter implements IRouter{
         app.get("/api/game/:id", gameController.getById.bind(gameController));
 
         app.post("/api/game", gameController.add.bind(gameController));
+        app.post("/api/game/:gid/category/:cid", gameController.addCategoryToGame.bind(gameController));
 
         app.put("/api/game/:id", gameController.edit.bind(gameController));
+        
+        app.delete("/api/game/:gid/category/:cid/delete", gameController.deleteCategoryFromGame.bind(gameController));
 
     }
 }
