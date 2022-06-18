@@ -176,7 +176,7 @@ abstract class BaseService<ReturnModel extends IModel, AdapterOptions extends IA
     protected async baseGetAllFromTableByFieldNameAndValue<OwnReturnType>(tableName: string, fieldName: string, value: any): Promise<OwnReturnType[]> {
         return new Promise(
             (resolve, reject) => {
-                const sql =  `SELECT * FROM \`${ tableName }\` WHERE \`${ fieldName }\` = ? AND is_active = 1;`;
+                const sql =  `SELECT * FROM \`${ tableName }\` WHERE \`${ fieldName }\` = ?;`;
 
                 this.db.execute(sql, [ value ])
                 .then( async ( [ rows ] ) => {

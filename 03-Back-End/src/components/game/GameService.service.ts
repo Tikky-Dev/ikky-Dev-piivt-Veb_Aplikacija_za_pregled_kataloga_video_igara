@@ -122,7 +122,7 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
                             description: game.description,
                             price: game.price,
                             pegiId: game.pegiId,
-                            isActive: game.isActive,
+                            isActive: game?.isActive,
                         }
 
                     })
