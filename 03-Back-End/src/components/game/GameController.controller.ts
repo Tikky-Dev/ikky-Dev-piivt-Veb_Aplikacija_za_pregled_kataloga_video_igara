@@ -132,9 +132,36 @@ class GameController extends BaseController{
 
     async deleteCategoryFromGame(req: Request, res:Response){
         const gameId: number = Number(req.params?.gid);
-        const categoryId: number = Number(req.params?.cid);
+        const categoryId: number = Number(req.params?.pid);
 
         this.service.game.deleteCategoryFromTheGame(gameId, categoryId)
+        .then(result => {
+            res.status(200).send(result);
+        })
+        .catch(error => {
+            res.status(400).send(error?.message);
+        });
+    }
+
+
+    async addPlatformToGame(req: Request, res:Response){
+        const gameId: number = Number(req.params?.gid);
+        const platformId: number = Number(req.params?.pid);
+
+        this.service.game.addNewPlatformToTheGame(gameId, platformId)
+        .then(result => {
+            res.status(200).send(result);
+        })
+        .catch(error => {
+            res.status(400).send(error?.message);
+        });
+    }
+
+    async deletePlatformFromGame(req: Request, res:Response){
+        const gameId: number = Number(req.params?.gid);
+        const platformId: number = Number(req.params?.pid);
+
+        this.service.game.deletePlatformFromTheGame(gameId, platformId)
         .then(result => {
             res.status(200).send(result);
         })

@@ -1,6 +1,5 @@
-import PlatformService, { DefaultPlatformAdapterOptions } from './PlatformService.service';
+import { DefaultPlatformAdapterOptions } from './PlatformService.service';
 import { Request, Response } from "express";
-import BaseService from '../../common/BaseService.service';
 import BaseController from '../../common/BaseController.controller';
 import IAddPlatform, { AddPlatformValidator } from './dto/IAddPlatform.dto';
 import IEditPlatform, { EditPlatformValidator, IEditPlatformDto } from './dto/IEditPlatform.dto';

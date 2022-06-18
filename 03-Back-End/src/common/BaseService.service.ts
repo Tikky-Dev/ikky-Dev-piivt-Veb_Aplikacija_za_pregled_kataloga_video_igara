@@ -199,6 +199,10 @@ abstract class BaseService<ReturnModel extends IModel, AdapterOptions extends IA
         );
     }
 
+    // TO DO:
+    //      [] add base delete function for connecting tables
+    //      [] add base add function for connecting tables
+
 
 }
 

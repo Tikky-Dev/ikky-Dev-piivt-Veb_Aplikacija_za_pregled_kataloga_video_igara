@@ -169,6 +169,40 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
         });
     }
 
+
+
+    public async addNewPlatformToTheGame(gameId: number, platformId: number): Promise<number>{
+        return new Promise((resolve, reject) => {
+            const sql: string = "INSERT game_platform SET game_id = ?, platform_id = ?;";
+            
+
+            this.db.execute(sql, [ gameId, platformId ])
+            .then(async result => {
+                const info: any = result;
+                resolve(Number(info[0]?.insertId));
+            })
+            .catch(error => {
+                reject(error);
+            });
+        });
+    }
+
+
+    public async deletePlatformFromTheGame(gameId: number, platformId: number): Promise<number>{
+        return new Promise((resolve, reject) => {
+            const sql: string = "DELETE FROM game_platform WHERE game_id = ? AND platform_id = ?;";
+
+            this.db.execute(sql, [ gameId, platformId ])
+            .then(async result => {
+                const info: any = result;
+                resolve(Number(info[0]?.insertId));
+            })
+            .catch(error => {
+                reject(error);
+            });
+        });
+    }
+
 }
 
 export default GameService;
