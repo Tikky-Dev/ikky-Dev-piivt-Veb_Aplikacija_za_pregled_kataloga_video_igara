@@ -1,5 +1,6 @@
 import CategoryModel from '../category/CategoryModel.model';
 import PlatformModel from '../platform/PlatformModel.model';
+import PhotoModel from '../photo/PhotoModel.model';
 
 class GameModel{
     gameId: number;
@@ -13,6 +14,7 @@ class GameModel{
 
     categories?: CategoryModel[];
     platforms?: PlatformModel[];
+    photo?: PhotoModel[];
 }
 
 export default GameModel;

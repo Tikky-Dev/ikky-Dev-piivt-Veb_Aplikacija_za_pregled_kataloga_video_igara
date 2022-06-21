@@ -2,6 +2,7 @@ import * as mysql2 from "mysql2/promise";
 import CategoryService from '../components/category/CategoryService.service';
 import GameService from '../components/game/GameService.service';
 import PegiService from '../components/pegi/PegiService.service';
+import PhotoService from "../components/photo/PhotoService.service";
 import PlatformService from '../components/platform/PlatformService.service';
 
 interface IAppResource{
@@ -14,7 +15,7 @@ interface IServices{
     game: GameService;
     pegi: PegiService;
     platform: PlatformService;
-
+    photo: PhotoService;
 }
 
 export default IAppResource;

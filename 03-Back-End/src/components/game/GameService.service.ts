@@ -9,11 +9,13 @@ import { IPlatformAdapterOptions } from "../platform/PlatformService.service";
 interface IGameAdapterOptions extends IAdapterOptions{
     loadCategories: boolean;
     loadPlatforms: boolean;
+    loadPhoto: boolean;
 }
 
 const DefaultGameAdapterOptions: IGameAdapterOptions = {
     loadCategories: false,
     loadPlatforms: false,
+    loadPhoto: false,
 }
 
 class GameService extends BaseService<GameModel, IGameAdapterOptions>{
@@ -41,6 +43,10 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
 
         if(options.loadCategories){
             game.platforms = await this.services.platform.getAllByGameId(game.gameId, DefaultGameAdapterOptions);
+        }
+
+        if(options.loadPhoto){
+            game.photo = await this.services.photo.getAllByGameId(game.gameId, DefaultGameAdapterOptions);
         }
 
         return game;

@@ -1,5 +1,2 @@
-interface IAdapterOptions{
-
-}
-
+interface IAdapterOptions{}
 export default IAdapterOptions;

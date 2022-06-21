@@ -10,6 +10,8 @@ import CategoryService from './components/category/CategoryService.service';
 import GameService from './components/game/GameService.service';
 import PegiService from './components/pegi/PegiService.service';
 import PlatformService from './components/platform/PlatformService.service';
+import PhotoService from './components/photo/PhotoService.service';
+import fileUpload = require("express-fileupload")
 
 async function main(){
     const app: express.Application = express();
@@ -34,6 +36,7 @@ async function main(){
             game: null,
             pegi: null,
             platform: null,
+            photo: null,
         }
     };
 
@@ -41,6 +44,8 @@ async function main(){
     appResources.services.game = new GameService(appResources);
     appResources.services.pegi = new PegiService(appResources);
     appResources.services.platform = new PlatformService(appResources);
+    appResources.services.photo = new PhotoService(appResources);
+    
 
     fs.mkdirSync(config.logger.path, {
         mode: 0o755,
@@ -53,6 +58,19 @@ async function main(){
     }));
     
     app.use(cors());
+    app.use(express.urlencoded({extended: true,}));
+    app.use(fileUpload({
+        limits: {
+            files: 5,
+            fileSize: 1024 * 1024 * 5,
+        },
+        abortOnLimit: true,
+        useTempFiles: true,
+        tempFileDir: "../temp/",
+        createParentPath: true,
+        safeFileNames: true,
+        preserveExtension: true,
+    }));
     app.use(express.json());
     app.use(config.server.static.route, express.static(config.server.static.path, {
         index: config.server.static.index,

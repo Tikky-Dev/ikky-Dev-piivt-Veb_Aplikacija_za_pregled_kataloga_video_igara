@@ -28,6 +28,46 @@ interface IConfig{
         supportBigNumbers: boolean,
     },
     routers: IRouter[],
+    fileUploads: {
+        maxFiles: number,
+        maxFileSize: number,
+        temporaryFileDirecotry: string,
+        destinationDirectoryRoot: string,
+        photos: {
+            allowedTypes: string[],
+            allowedExtensions: string[],
+            width: {
+                min: number,
+                max: number,
+            },
+            height: {
+                min: number,
+                max: number,
+            },
+            resize: IResize[],
+        },
+    }
+}
+interface IResize {
+    prefix: string,
+    width: number,
+    height: number,
+    fit: "contain" | "cover",
+    defaultBackground: {
+        r: number,
+        g: number,
+        b: number,
+        alpha: number,
+    },
+}
+
+interface IMailConfiguration {
+    host: string,
+    port: number,
+    email: string,
+    password: string,
+    debug: boolean,
 }
 
 export default IConfig;
+export { IMailConfiguration, IResize };
