@@ -2,8 +2,13 @@ import BaseService from "../../common/BaseService.service";
 import IAdapterOptions from "../../common/IAdapterOptions.interface";
 import IAddPhoto from "./dto/IAddPhoto.dto";
 import PhotoModel from "./PhotoModel.model";
+import IEditPhoto from './dto/IEditPhoto.dto';
 
 interface IPhotoAdapterOptions extends IAdapterOptions {
+
+}
+
+const DefaultPhotoAdapterOptions = {
 
 }
 
@@ -31,6 +36,10 @@ class PhotoService extends BaseService<PhotoModel, IPhotoAdapterOptions> {
 
     public async getAllByGameId(gameId: number, options: IPhotoAdapterOptions = {}): Promise<PhotoModel[]> {
         return this.baseGetAllByFealdNameAndValue("game_id", gameId, options);
+    }
+
+    public async edditById(photoId: number, data: IEditPhoto, options: IPhotoAdapterOptions = DefaultPhotoAdapterOptions): Promise<PhotoModel>{
+        return this.baseEditById(photoId, data,options);
     }
 }
 

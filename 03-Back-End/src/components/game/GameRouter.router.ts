@@ -16,6 +16,7 @@ class GameRouter implements IRouter{
         app.post("/api/game/:gid/photo",                  gameController.uploadPhoto.bind(gameController));
 
         app.put("/api/game/:id",                          gameController.edit.bind(gameController));
+        app.put("/api/photo/:id/delete",                  gameController.deletePhoto.bind(gameController));
         
         app.delete("/api/game/:gid/category/:cid/delete", gameController.deleteCategoryFromGame.bind(gameController));
         app.delete("/api/game/:gid/platform/:pid/delete", gameController.deletePlatformFromGame.bind(gameController));

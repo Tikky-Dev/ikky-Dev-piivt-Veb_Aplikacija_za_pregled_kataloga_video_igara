@@ -12,6 +12,7 @@ import * as uuid from "uuid";
 import PhotoModel from '../photo/PhotoModel.model';
 import IConfig, { IResize } from '../../common/IConfig.interface';
 import { DevConfig } from '../../config';
+import IEditPhoto, { IEditPhotoDto } from '../photo/dto/IEditPhoto.dto';
 import sharp = require('sharp');
 
 class GameController extends BaseController{
@@ -331,6 +332,40 @@ class GameController extends BaseController{
             withoutEnlargement: true,
         })
         .toFile(config.server.static.path + "/" + directory + resizeOptions.prefix + filename);
+    }
+
+    public async deletePhoto(req: Request, res: Response){
+        const id: number = Number(req.params?.id);
+        const data = req.body as IEditPhotoDto;
+
+        this.service.photo.baseGetById(id, {})
+        .then(result => {
+            if(result === null){
+                throw {
+                    status: 404,
+                    message: "Photo not found",
+                }
+            }
+        })
+        .then(() => {
+
+            const serviceData: IEditPhoto = {};
+
+            if(data.isActive !== undefined){
+                serviceData.is_active = data.isActive ? 1:0
+            }
+
+            return this.service.photo.edditById(
+                id,
+                serviceData,
+                DefaultGameAdapterOptions)
+        })
+        .then(result => {
+            res.send(result);
+        })
+        .catch(error => {
+            res.status(400).send(error?.message);
+        });
     }
 
 
