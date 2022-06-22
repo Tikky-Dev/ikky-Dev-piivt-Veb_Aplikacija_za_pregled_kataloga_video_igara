@@ -12,6 +12,8 @@ import PegiService from './components/pegi/PegiService.service';
 import PlatformService from './components/platform/PlatformService.service';
 import PhotoService from './components/photo/PhotoService.service';
 import fileUpload = require("express-fileupload")
+import AdministratorService from "./components/admin/AdminService.service";
+import UserService from "./components/user/UserService.service";
 
 async function main(){
     const app: express.Application = express();
@@ -37,6 +39,8 @@ async function main(){
             pegi: null,
             platform: null,
             photo: null,
+            administrator:null,
+            user:null,
         }
     };
 
@@ -45,6 +49,8 @@ async function main(){
     appResources.services.pegi = new PegiService(appResources);
     appResources.services.platform = new PlatformService(appResources);
     appResources.services.photo = new PhotoService(appResources);
+    appResources.services.administrator = new AdministratorService(appResources);
+    appResources.services.user = new UserService(appResources);
     
 
     fs.mkdirSync(config.logger.path, {

@@ -46,7 +46,8 @@ interface IConfig{
             },
             resize: IResize[],
         },
-    }
+    },
+    mail: IMailConfiguration,
 }
 interface IResize {
     prefix: string,

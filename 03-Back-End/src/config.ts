@@ -3,6 +3,8 @@ import CategoryRouter from './components/category/CategoryRouter.router';
 import PegiRouter from './components/pegi/PegiRouter.router';
 import PlatformRouter from './components/platform/PlatformRouter.router';
 import GameRouter from './components/game/GameRouter.router';
+import AdministratorRouter from './components/admin/AdminRouter.router';
+import UserRouter from './components/user/UserRouter.router';
 
 const DevConfig: IConfig = {
     server: {
@@ -37,6 +39,8 @@ const DevConfig: IConfig = {
         new PegiRouter(),
         new PlatformRouter(),
         new GameRouter(),
+        new AdministratorRouter(),
+        new UserRouter(),
     ],
     fileUploads: {
         maxFiles: 5,
@@ -71,6 +75,13 @@ const DevConfig: IConfig = {
                 },
             ],
         },
+    },
+    mail: {
+        host: "smtp.office365.com",
+        port: 587,
+        email: "",
+        password: "",
+        debug: true,
     },
 }
 
