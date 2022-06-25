@@ -1,3 +1,4 @@
+import { Algorithm } from 'jsonwebtoken';
 import IRouter from './IRouter.interface';
 interface IConfig{
     server: {
@@ -48,6 +49,11 @@ interface IConfig{
         },
     },
     mail: IMailConfiguration,
+    auth: {
+        user: IAuthTokenOptions,
+        administrator: IAuthTokenOptions,
+        allowAllRoutesWithoutAuthTokens: boolean,
+    },
 }
 interface IResize {
     prefix: string,
@@ -68,6 +74,23 @@ interface IMailConfiguration {
     email: string,
     password: string,
     debug: boolean,
+}
+
+export interface IAuthTokenOptions {
+    issuer: string,
+    algorithm: Algorithm,
+    tokens: {
+        auth: ITokenProperties,
+        refresh: ITokenProperties,
+    },
+}
+
+export interface ITokenProperties {
+    duration: number,
+    keys: {
+        public: string,
+        private: string,
+    },
 }
 
 export default IConfig;

@@ -5,6 +5,8 @@ import PlatformRouter from './components/platform/PlatformRouter.router';
 import GameRouter from './components/game/GameRouter.router';
 import AdministratorRouter from './components/admin/AdminRouter.router';
 import UserRouter from './components/user/UserRouter.router';
+import { readFileSync } from 'fs';
+import { MailConfigurationParameters } from './config.mail';
 
 const DevConfig: IConfig = {
     server: {
@@ -77,11 +79,54 @@ const DevConfig: IConfig = {
         },
     },
     mail: {
-        host: "smtp.office365.com",
-        port: 587,
-        email: "",
-        password: "",
-        debug: true,
+        host: MailConfigurationParameters.host,
+        port: MailConfigurationParameters.port,
+        email: MailConfigurationParameters.email,
+        password: MailConfigurationParameters.password,
+        debug: MailConfigurationParameters.debug,
+    },
+    auth: {
+        administrator: {
+            algorithm: "RS256",
+            issuer: "PIiVT",
+            tokens: {
+                auth: {
+                    duration: 60 * 60 * 24,
+                    keys: {
+                        public: readFileSync("./.keystore/app.public", "ascii"),
+                        private: readFileSync("./.keystore/app.private", "ascii"),
+                    },
+                },
+                refresh: {
+                    duration: 60 * 60 * 24 * 60, // Za dev: 60 dana - inace treba oko mesec dana
+                    keys: {
+                        public: readFileSync("./.keystore/app.public", "ascii"),
+                        private: readFileSync("./.keystore/app.private", "ascii"),
+                    },
+                },
+            },
+        },
+        user: {
+            algorithm: "RS256",
+            issuer: "PIiVT",
+            tokens: {
+                auth: {
+                    duration: 60 * 60 * 24,
+                    keys: {
+                        public: readFileSync("./.keystore/app.public", "ascii"),
+                        private: readFileSync("./.keystore/app.private", "ascii"),
+                    },
+                },
+                refresh: {
+                    duration: 60 * 60 * 24 * 60, // Za dev: 60 dana - inace treba oko mesec dana
+                    keys: {
+                        public: readFileSync("./.keystore/app.public", "ascii"),
+                        private: readFileSync("./.keystore/app.private", "ascii"),
+                    },
+                },
+            },
+        },
+        allowAllRoutesWithoutAuthTokens: false, // Samo dok traje razvoj front-end dela bez mogucnosti prijave
     },
 }
 
