@@ -33,6 +33,7 @@ class GameController extends BaseController{
                 loadCategories: true,
                 loadPlatforms: true,
                 loadPhoto: true,
+                loadReviews: true
             })
             .then((result) => {
                 if(result === null){

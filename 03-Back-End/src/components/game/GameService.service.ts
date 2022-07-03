@@ -10,12 +10,14 @@ interface IGameAdapterOptions extends IAdapterOptions{
     loadCategories: boolean;
     loadPlatforms: boolean;
     loadPhoto: boolean;
+    loadReviews: boolean;
 }
 
 const DefaultGameAdapterOptions: IGameAdapterOptions = {
     loadCategories: false,
     loadPlatforms: false,
     loadPhoto: false,
+    loadReviews: false,
 }
 
 class GameService extends BaseService<GameModel, IGameAdapterOptions>{
@@ -47,6 +49,10 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
 
         if(options.loadPhoto){
             game.photo = await this.services.photo.getAllByGameId(game.gameId, DefaultGameAdapterOptions);
+        }
+
+        if(options.loadReviews){
+            game.reviews = await this.services.review.getAllByGameId(game.gameId, DefaultGameAdapterOptions);
         }
 
         return game;
