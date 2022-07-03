@@ -6,6 +6,7 @@ import PegiService from '../components/pegi/PegiService.service';
 import PhotoService from "../components/photo/PhotoService.service";
 import PlatformService from '../components/platform/PlatformService.service';
 import UserService from '../components/user/UserService.service';
+import ReviewService from '../components/review/ReviewService.service';
 
 interface IAppResource{
     databaseConnection: mysql2.Connection;
@@ -20,6 +21,7 @@ interface IServices{
     photo: PhotoService;
     user: UserService;
     administrator: AdministratorService;
+    review: ReviewService;
 }
 
 export default IAppResource;

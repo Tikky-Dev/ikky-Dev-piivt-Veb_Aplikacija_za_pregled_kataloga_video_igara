@@ -14,6 +14,7 @@ import PhotoService from './components/photo/PhotoService.service';
 import fileUpload = require("express-fileupload")
 import AdministratorService from "./components/admin/AdminService.service";
 import UserService from "./components/user/UserService.service";
+import ReviewService from './components/review/ReviewService.service';
 
 async function main(){
     const app: express.Application = express();
@@ -39,8 +40,9 @@ async function main(){
             pegi: null,
             platform: null,
             photo: null,
-            administrator:null,
-            user:null,
+            administrator: null,
+            user: null,
+            review: null,
         }
     };
 
@@ -51,6 +53,7 @@ async function main(){
     appResources.services.photo = new PhotoService(appResources);
     appResources.services.administrator = new AdministratorService(appResources);
     appResources.services.user = new UserService(appResources);
+    appResources.services.review = new ReviewService(appResources);
     
 
     fs.mkdirSync(config.logger.path, {
