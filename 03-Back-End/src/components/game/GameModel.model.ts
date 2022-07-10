@@ -2,6 +2,7 @@ import CategoryModel from '../category/CategoryModel.model';
 import PlatformModel from '../platform/PlatformModel.model';
 import PhotoModel from '../photo/PhotoModel.model';
 import ReviewModel from '../review/ReviewModel.model';
+import PegiModel from '../pegi/PegiModel.model';
 
 class GameModel{
     gameId: number;
@@ -10,7 +11,7 @@ class GameModel{
     publishYear: number;
     description: string;
     price: number;
-    pegiId: number;
+    pegi: PegiModel;
     isActive: boolean;
 
     categories?: CategoryModel[];

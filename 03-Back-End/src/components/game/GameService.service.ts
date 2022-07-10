@@ -5,6 +5,7 @@ import IAddGame from './dto/IAddGame.dto';
 import IEditGame from './dto/IEditGame.dto';
 import { ICategoryAdapterOptions } from "../category/CategoryService.service";
 import { IPlatformAdapterOptions } from "../platform/PlatformService.service";
+import { DefaultPegiAdapterOptions } from "../pegi/PegiService.service";
 
 interface IGameAdapterOptions extends IAdapterOptions{
     loadCategories: boolean;
@@ -36,7 +37,7 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
         game.publishYear = Number(data?.publish_year);
         game.description = data?.description;
         game.price = Number(data?.price);
-        game.pegiId = Number(data?.pegi_id);
+        game.pegi = await this.services.pegi.baseGetById(Number(data?.pegi_id), DefaultPegiAdapterOptions);
         game.isActive = data?.is_active === 1;
 
         if(options.loadCategories){
@@ -94,7 +95,7 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
                             publishYear: game.publishYear,
                             description: game.description,
                             price: game.price,
-                            pegiId: game.pegiId,
+                            pegi: game.pegi,
                             isActive: game.isActive,
                         }
 
@@ -133,7 +134,7 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
                             publishYear: game.publishYear,
                             description: game.description,
                             price: game.price,
-                            pegiId: game.pegiId,
+                            pegi: game.pegi,
                             isActive: game?.isActive,
                         }
 
