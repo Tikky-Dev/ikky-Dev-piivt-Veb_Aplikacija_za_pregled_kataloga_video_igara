@@ -1,9 +1,8 @@
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Menu(){
     
     return(
-        <BrowserRouter>
             <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4">
                 <Link className="navbar-brand" to="/">Home page</Link>
 
@@ -16,10 +15,10 @@ function Menu(){
                         <Link className="nav-item nav-link" to="/auth/user/login">User login</Link>
                         <Link className="nav-item nav-link" to="/categories">Categories</Link>
                         <Link className="nav-item nav-link" to="/contact">Contact</Link>
+                        <Link className="nav-item nav-link" to="/admin/dashboard">Admin Dashboard</Link>
                     </div>
                 </div>
             </nav>
-        </BrowserRouter>
     );
 }
 
