@@ -2,12 +2,13 @@ import IPegi from "./IPegi.model";
 import ICategory from './ICategory.model';
 import IPlatform from './IPlatform.model';
 import IReview from './IReview.model';
+import IPhoto from './IPhoto.model';
 
 interface IGame{
     gameId: number;
     title: string;
     publisher: string;
-    publishYeard: number;
+    publishYear: number;
     description: string;
     price: number;
     isActive: boolean;
@@ -16,6 +17,7 @@ interface IGame{
     categories?: ICategory[];
     platforms?: IPlatform[];
     reviews?: IReview[];
+    photos: IPhoto[]
 
 
 
