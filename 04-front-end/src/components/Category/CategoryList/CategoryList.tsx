@@ -1,18 +1,24 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import api from '../../../api/api';
 import ICategory from '../../../models/ICategory.model';
 function CategoryList(){
     const [categories, setCategories] = useState<ICategory[]>([]);
     const [ errorMessage, setErrorMessage ] = useState<string>("");
 
     useEffect(() => {
-        fetch("http://localhost:10000/api/category")
-        .then(res => res.json())
-        .then(data => {
-            setCategories(data);
+
+        api("get", "/api/category", "user")
+        .then(apiResponse => {
+            if(apiResponse.status === "error"){
+                throw { message: "Unknown error while loading categories...", }
+            }
+            
+            setCategories(apiResponse.data);
+
         })
-        .catch(error => {
-            setErrorMessage(error?.message ?? 'Unknown error while loading categories...');
+        .catch(err => {
+            setErrorMessage(err?.message ?? 'Unknown error while loading categories...')
         })
     }, [])
 

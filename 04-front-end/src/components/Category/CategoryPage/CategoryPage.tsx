@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import api from '../../../api/api';
 import ICategory from '../../../models/ICategory.model';
 import IGame from '../../../models/IGame.model';
 import GamePreview from '../../Game/GamePreciew';
@@ -19,18 +20,22 @@ function CatgoryPage(){
     useEffect(() => {
         setLoading(true);
 
-        fetch("http://localhost:10000/api/category/"+params.id)
-        .then(res => res.json())
-        .then(data => {
-            setCategory(data);
-            setGames(data.games)
+        api("get", "/api/category/" + params.id, "user")
+        .then(apiResponse => {
+            if(apiResponse.status === "error"){
+                throw { message: "Unknown error while loading category", }
+            }
+            
+            setCategory(apiResponse.data);
+            setGames(apiResponse.data.games)
         })
-        .catch(error => {
-            setErrorMessage(error?.message ?? "Unknown error while loading category")
+        .catch(err => {
+            setErrorMessage(err?.message ?? "Unknown error while loading category")
         })
         .finally(() => {
-            setLoading(false);
-        })
+                setLoading(false);
+            }
+        )
     }, [])
     
     return(
