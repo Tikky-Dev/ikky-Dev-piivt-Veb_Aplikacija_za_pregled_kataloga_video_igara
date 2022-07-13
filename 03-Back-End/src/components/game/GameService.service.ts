@@ -85,7 +85,8 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
 
                 const games: GameModel[] = await Promise.all(
                     result.map(async row => {
-                        const game = await (await this.baseGetById(row.game_id, DefaultGameAdapterOptions));
+                        const game = await (await this.baseGetById(row.game_id, 
+                            {loadCategories: true, loadPlatforms:true, loadPhoto:true, loadReviews: false}));
 
                         return {
                             gameId: game.gameId,
@@ -97,6 +98,10 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
                             price: game.price,
                             pegi: game.pegi,
                             isActive: game.isActive,
+                            platforms: game.platforms,
+                            categories: game.categories,
+                            photos: game.photo
+                            
                         }
 
                     })
@@ -124,7 +129,8 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
 
                 const games: GameModel[] = await Promise.all(
                     result.map(async row => {
-                        const game = await (await this.baseGetById(row.game_id, DefaultGameAdapterOptions));
+                        const game = await (await this.baseGetById(row.game_id, 
+                            {loadCategories: true, loadPlatforms:true, loadPhoto:true, loadReviews: false}));
 
                         return {
                             gameId: game.gameId,
@@ -136,6 +142,9 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
                             price: game.price,
                             pegi: game.pegi,
                             isActive: game?.isActive,
+                            platforms: game.platforms,
+                            categories: game.categories,
+                            photos: game.photo
                         }
 
                     })
