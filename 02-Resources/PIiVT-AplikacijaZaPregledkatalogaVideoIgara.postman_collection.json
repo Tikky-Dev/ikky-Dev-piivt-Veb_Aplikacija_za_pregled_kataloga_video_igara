@@ -1,0 +1,1676 @@
+{
+	"info": {
+		"_postman_id": "1ed093ef-1287-40ac-95c4-f722249d02b3",
+		"name": "PIiVT-AplikacijaZaPregledkatalogaVideoIgara",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21099090"
+	},
+	"item": [
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Get all active (non deleted) categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/category",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all active categories",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/category",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "239"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ef-DX1tUEPIH3fY1yARioesH2tDeQs\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Jun 2022 16:33:08 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"categoryId\": 3,\n        \"name\": \"FPS\",\n        \"isActive\": true\n    },\n    {\n        \"categoryId\": 1,\n        \"name\": \"MMORPG\",\n        \"isActive\": true\n    },\n    {\n        \"categoryId\": 2,\n        \"name\": \"RPG\",\n        \"isActive\": true\n    },\n    {\n        \"categoryId\": 4,\n        \"name\": \"RTS\",\n        \"isActive\": true\n    },\n    {\n        \"categoryId\": 5,\n        \"name\": \"Strategy\",\n        \"isActive\": true\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get a single category that is active by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/category/3",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"category",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get a single category by Id - exists",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/category/5",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"category",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "50"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"32-bXvOygFF+FHEGQWQS3EhgOqi78o\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Jun 2022 17:11:57 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"categoryId\": 5,\n    \"name\": \"Strategy\",\n    \"isActive\": true\n}"
+						},
+						{
+							"name": "Get a single category by Id - does not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/category/10",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"category",
+										"10"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "19"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"13-WxlNs6x8vcUKqpz0zOuvik5v/A8\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 02 Jun 2022 17:12:26 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Category not found!"
+						}
+					]
+				},
+				{
+					"name": "Add new category",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category_name\": \"action-adventure\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/category",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"category"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a category by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n     \"categoryName\": \"Test Deleted category\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/category/6",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"category",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Platform",
+			"item": [
+				{
+					"name": "Get all active plathorms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/platform",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"platform"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all active plathorms",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/platform",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"platform"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "243"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f3-JB9s2qvDMsMhZQi9q8cPUp6KIpM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Jun 2022 07:31:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"platformId\": 1,\n        \"name\": \"PC\",\n        \"isActive\": true\n    },\n    {\n        \"platformId\": 2,\n        \"name\": \"MAC\",\n        \"isActive\": true\n    },\n    {\n        \"platformId\": 3,\n        \"name\": \"XBox\",\n        \"isActive\": true\n    },\n    {\n        \"platformId\": 4,\n        \"name\": \"PlayStation\",\n        \"isActive\": true\n    },\n    {\n        \"platformId\": 5,\n        \"name\": \"Nitendo\",\n        \"isActive\": true\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get active platform by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/platform/5",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"platform",
+								"5"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get active platform by id - exists",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/platform/3",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"platform",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "46"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2e-dG+PhUfpBK3O+gp7yX7k31pSKCs\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Jun 2022 07:32:51 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"platformId\": 3,\n    \"name\": \"XBox\",\n    \"isActive\": true\n}"
+						},
+						{
+							"name": "Get active platform by id - does not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/platform/20",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"platform",
+										"20"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "19"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"13-RE/x/iYWE6M6MygNwm7lE/W5zTM\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Jun 2022 07:33:19 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Platform not found!"
+						}
+					]
+				},
+				{
+					"name": "Add new platform",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"platform_name\": \"Wii\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/platform",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"platform"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a platform by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"platformName\": \"Wii\",\n    \"isActive\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/platform/7",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"platform",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Game",
+			"item": [
+				{
+					"name": "Category",
+					"item": [
+						{
+							"name": "Add category to the game",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/game/1/category/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"game",
+										"1",
+										"category",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete category from the game",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/game/1/category/2/delete",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"game",
+										"1",
+										"category",
+										"2",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Platform",
+					"item": [
+						{
+							"name": "Add platform to the game",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/game/1/platform/3",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"game",
+										"1",
+										"platform",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete platform from game",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/game/1/platform/3/delete",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"game",
+										"1",
+										"platform",
+										"3",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Photo",
+					"item": [
+						{
+							"name": "Upload item photos",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file1",
+											"type": "file",
+											"src": "/home/tikkydev/Projects/PiIVT/Images for testing/minecraft.jpg"
+										},
+										{
+											"key": "file2",
+											"type": "file",
+											"src": "/home/tikkydev/Projects/PiIVT/Images for testing/SteavMinecraft.png"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/game/3/photo",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"game",
+										"3",
+										"photo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete photo by id",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"isActive\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/photo/2/delete",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"photo",
+										"2",
+										"delete"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Get all active games",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/game",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"game"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all active games",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/game",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"game"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "523"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"20b-rNG++UGtJqReBCDnoGvsM16x/2M\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Jun 2022 08:13:22 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"gameId\": 1,\n        \"title\": \"Grand Theft Auto V\",\n        \"publisher\": \"Rocstar Games\",\n        \"publishYear\": 2013,\n        \"description\": \"When a young street hustler, a retired bank robber and a terrifying psychopath find themselves entangled with some of the most frightening and deranged elements of the criminal underworld, the U.S. government and the entertainment industry, they must pull off a series of dangerous heists to survive in a ruthless city in which they can trust nobody, least of all each other.\",\n        \"price\": 39.97,\n        \"pegiId\": 4,\n        \"isActive\": true\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get active game by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/game/3",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"game",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get active game by id - exists",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/game/1",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"game",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "521"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"209-nZ6nOBg8OKDY6xvoNnlkGn60kuo\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Jun 2022 08:14:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"gameId\": 1,\n    \"title\": \"Grand Theft Auto V\",\n    \"publisher\": \"Rocstar Games\",\n    \"publishYear\": 2013,\n    \"description\": \"When a young street hustler, a retired bank robber and a terrifying psychopath find themselves entangled with some of the most frightening and deranged elements of the criminal underworld, the U.S. government and the entertainment industry, they must pull off a series of dangerous heists to survive in a ruthless city in which they can trust nobody, least of all each other.\",\n    \"price\": 39.97,\n    \"pegiId\": 4,\n    \"isActive\": true\n}"
+						},
+						{
+							"name": "Get active game by id - does not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/game/2",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"game",
+										"2"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "15"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f-MDl2Vc2sBOfffY8SwWZx2uuskok\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Jun 2022 08:14:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Game not found!"
+						}
+					]
+				},
+				{
+					"name": "Add new game",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Super mario bros\",\n    \"publisher\": \"Nintendo.\",\n    \"publish_year\": 1985,\n    \"description\": \"Super Mario Bros. is a platform game developed and published by Nintendo. The successor to the 1983 arcade game Mario Bros. and the first in the Super Mario series, it was released in 1985 for the Famicom in Japan\",\n    \"pegi_id\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/game",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"game"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit a game by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"publisher\": \"Mojang Studios\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/game/2",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"game",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pegi",
+			"item": [
+				{
+					"name": "Get all active Pegi ratings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/pegi",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"pegi"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get all active Pegi ratings",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/pegi",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"pegi"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1810"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"712-dDCY3/4IepCH5R4B6NAfPoGVMqI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Jun 2022 06:26:56 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"pegiId\": 1,\n        \"name\": \"Everyone\",\n        \"description\": \"Content is generally suitable for all ages. May contain minimal cartoon, fantasy or mild violence and/or infrequent use of mild language.\",\n        \"isActive\": true\n    },\n    {\n        \"pegiId\": 2,\n        \"name\": \"Everyone 10+\",\n        \"description\": \"Content is generally suitable for ages 10 and up. May contain more cartoon, fantasy or mild violence, mild language and/or minimal suggestive themes.\",\n        \"isActive\": true\n    },\n    {\n        \"pegiId\": 3,\n        \"name\": \"Teen\",\n        \"description\": \"Content is generally suitable for ages 13 and up. May contain violence, suggestive themes, crude humor, minimal blood, simulated gambling and/or infrequent use of strong language.\",\n        \"isActive\": true\n    },\n    {\n        \"pegiId\": 4,\n        \"name\": \"Mature 17+\",\n        \"description\": \"Content is generally suitable for ages 17 and up. May contain intense violence, blood and gore, sexual content and/or strong language.\",\n        \"isActive\": true\n    },\n    {\n        \"pegiId\": 5,\n        \"name\": \"Adults Only 18+\",\n        \"description\": \"Content suitable only for adults ages 18 and up. May include prolonged scenes of intense violence, graphic sexual content and/or gambling with real currency.\",\n        \"isActive\": true\n    },\n    {\n        \"pegiId\": 6,\n        \"name\": \"Rating Pending\",\n        \"description\": \"Not yet assigned a final ESRB rating. Appears only in advertising, marketing and promotional materials related to a physical (e.g., boxed) video game that is expected to carry an ESRB rating, and should be replaced by a game's rating once it has been assigned.\",\n        \"isActive\": true\n    },\n    {\n        \"pegiId\": 7,\n        \"name\": \"Rating Pending — Likely Mature 17+\",\n        \"description\": \"Not yet assigned a final ESRB rating but anticipated to be rated Mature 17+. Appears only in advertising, marketing, and promotional materials related to a physical (e.g., boxed) video game that is expected to carry an ESRB rating, and should be replaced by a game’s rating once it has been assigned.\",\n        \"isActive\": true\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get active pegi rating by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/pegi/9",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"pegi",
+								"9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get active pegi rating by id - exists",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/pegi/7",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"pegi",
+										"7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "393"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"189-9l5HY+fzeMw6b7iQ0KYNDWgj1Qc\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Jun 2022 06:28:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"pegiId\": 7,\n    \"name\": \"Rating Pending — Likely Mature 17+\",\n    \"description\": \"Not yet assigned a final ESRB rating but anticipated to be rated Mature 17+. Appears only in advertising, marketing, and promotional materials related to a physical (e.g., boxed) video game that is expected to carry an ESRB rating, and should be replaced by a game’s rating once it has been assigned.\",\n    \"isActive\": true\n}"
+						},
+						{
+							"name": "Get active pegi rating by id - does not exist",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{API_URL}}/api/pegi/20",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"pegi",
+										"20"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "15"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f-xYExj14MQ4oXFCe5ezNLG1Hqva8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 03 Jun 2022 06:30:07 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Pegi not found!"
+						}
+					]
+				},
+				{
+					"name": "Add new pegi rating",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"PEGI 3\",\n    \"description\": \"The content of games with a PEGI 3 rating is considered suitable for all age groups. The game should not contain any sounds or pictures that are likely to frighten young children. A very mild form of violence (in a comical context or a childlike setting) is acceptable. No bad language should be heard.\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/pegi",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"pegi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit pegi rating by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pegiName\": \"PEGI 3\",\n    \"pegiDescription\": \"The content of games with a PEGI 3 rating is considered suitable for all age groups. The game should not contain any sounds or pictures that are likely to frighten young children. A very mild form of violence (in a comical context or a childlike setting) is acceptable. No bad language should be heard!\",\n    \"isActive\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/pegi/9",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"pegi",
+								"9"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "Add new admin",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"newadmin\",\n    \"password\": \"Admin123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/administrator",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"administrator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all admins",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/administrator",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"administrator"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get admim by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/administrator/3",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"administrator",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit admin by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\": \"Admin123456\",\n    \"isActive\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/administrator/2",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"administrator",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Review",
+					"item": [
+						{
+							"name": "Add review",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"rating\": 5,\n    \"comment\": 42,\n    \"game_id\": 4,\n    \"user_id\": 21 \n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/user/addReview",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"addReview"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Edir review",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"rating\": 1,\n    \"comment\": \"Test Reting edited from postman as a test of editReviewById function.\",\n    \"isApproved\": false, \n    \"isActive\": false\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/user/review/3",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"user",
+										"review",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Register new user",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test user5\",\n    \"surename\": \"Tester5\",\n    \"address\": \"Test adres 6\",\n    \"place\": \"test City5\",\n    \"email\": \"nocetepa@mailo.icu\",\n    \"phone\": \"066000005\",\n    \"password\": \"Test123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/user/register",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjoyNCwiaWRlbnRpdHkiOiJ1bmRlZmluZWQgdW5kZWZpbmVkIiwiaWF0IjoxNjU2ODgwMjc0LCJleHAiOjE2NTY5NjY2NzQsImlzcyI6IlBJaVZUIn0.EfWuaOvQnq7uP3YHdmqyZ-rNbgXteWESYUS1I9azrIJ601Tc0T52Mvf47fMCv8essJaj3W4VeI1t24pwTjXFfGiyx0jyc1Ur-taVc4JF-XdFfTdjK0arPuEUIX7cdzMhuZ3ZVrmQXW4b2C8sMp68___ospUle1VZyHoOl9ZyiHVlF4uIhwD497_hdo1ExHEr-lSGbOiWLBmC6ws0SvkMYRqDv2ZtZtffzPewvPtADAFCABCQ5Q4NN8L9rL53vSr5gU3pyjI8_-6wWRr0DBOIyC3YD2nHhtP3u53q2I6jASuGRcJ-FiA7W4nSwKPXVnazZ3oquSYbWN2O_Cgdv5nIdw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/user",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"user"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/user/22",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"22"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit user by id",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"surename\": \"EditedTest\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{API_URL}}/api/user/1",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Activate user by activation code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{API_URL}}/api/user/activate/894844ce-1d40-4269-a3a3-0f4fd1f5e687",
+							"host": [
+								"{{API_URL}}"
+							],
+							"path": [
+								"api",
+								"user",
+								"activate",
+								"894844ce-1d40-4269-a3a3-0f4fd1f5e687"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User reset password",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Login User",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"nocetepa@mailo.icu\",\n    \"password\": \"Test123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/auth/user/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"user",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Refresh token User",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoidXNlciIsImlkIjoyNCwiaWRlbnRpdHkiOiJ1bmRlZmluZWQgdW5kZWZpbmVkIiwiaWF0IjoxNjU2ODgwMjc0LCJleHAiOjE2NjIwNjQyNzQsImlzcyI6IlBJaVZUIn0.OdsSyYScwaOzfi4uykDYIzgWpVa6-vEBq44lhlcXxsfNoKOLCkGCK5vMFCLnoXEmcpqkVPETCFdtJccAEjzZUAarwzZHAi170m9SS4z0HCLWMXA3LJUS7z7BvosLw4IhefltpciRNiwqbTmQejhtJcMzYQbWWdwSVHa1g3ugPSzbUHrvyxUk7DK2GvWJTeR1JbhTY5Q4XfMeePaEm3MeyAU8t-GysJiM-JHd2LjIQuDa1hXbas9-bs87EkoBKPBkswrHez3QTljXCGg9OnQ-o66NO_y2TT3_KPj6Fv1iNhV2dvYy7QzqkFbughfuswF5j5TxAKkOSPP3ZUKlsN1yQA",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"nocetepa@mailo.icu\",\n    \"password\": \"Test123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/auth/user/refresh",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"user",
+										"refresh"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "Login Administrator",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"newadmin\",\n    \"password\": \"Admin123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/auth/administrator/login",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"administrator",
+										"login"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Refresh token Administrator",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW5pc3RyYXRvciIsImlkIjozLCJpZGVudGl0eSI6Im5ld2FkbWluIiwiaWF0IjoxNjU2ODc5MjY0LCJleHAiOjE2NjIwNjMyNjQsImlzcyI6IlBJaVZUIn0.NGOG2hwjDj_wDpzILoCiHRsgpWIS6w8CbrXQ0AJy51yAb63vyHa2cPuPzWekPqjaVpKcxGTvsUo9k61KrTeU3plzLzOv5g3uV9JApLlp6vu8U5ebcAf999CFfwtPAL80IqjSoSYV6YYRYMikdJqxT6_oJZPSR-mhJUaP6rLkPPIFXr4WdIdQgDCU8dz4mnB-HKgc69Shnw4A-FafiAoqxPm9x5_nHQIvYI39JsoWGBZSWivXJqu42JNUvwDq_7dhMpNsI-GIuJZONrc8wwg5Wd4NnHTGChiFyoyxG3i4QM8pfste99Qjz26k8WBg4OwF-2kglDzf4KoRLLQdVAQuWg",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"newadmin\",\n    \"password\": \"Admin123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/api/auth/administrator/refresh",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"api",
+										"auth",
+										"administrator",
+										"refresh"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "API_URL",
+			"value": "http://localhost:10000",
+			"type": "string"
+		}
+	]
+}

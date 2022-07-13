@@ -88,7 +88,7 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
                         const game = await (await this.baseGetById(row.game_id, DefaultGameAdapterOptions));
 
                         return {
-                            gameId: row.category_id,
+                            gameId: game.gameId,
                             name: game.title,
                             title: game.title,
                             publisher: game.publisher,
@@ -127,7 +127,7 @@ class GameService extends BaseService<GameModel, IGameAdapterOptions>{
                         const game = await (await this.baseGetById(row.game_id, DefaultGameAdapterOptions));
 
                         return {
-                            gameId: row.platform_id,
+                            gameId: game.gameId,
                             name: game.title,
                             title: game.title,
                             publisher: game.publisher,
