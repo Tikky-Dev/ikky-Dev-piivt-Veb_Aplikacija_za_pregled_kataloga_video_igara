@@ -74,6 +74,7 @@ MySQL baza:
 ...
 
 **Posetilac**
+
     - Pregled
         - igara
         - kategorija
