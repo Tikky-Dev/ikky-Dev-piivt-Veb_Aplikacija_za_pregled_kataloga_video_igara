@@ -14,6 +14,7 @@ import AdminPlatformList from '../Platform/AdminDashboard/AdminPlatformList';
 import AdminPlatformGameList from '../Game/AdminPlatformGameList/AdminPlatformGameList';
 import AdminAdministratorList from '../Admin/Dashboard/AdminList/AdminAdministratorList';
 import AdminAdministratorAdd from '../Admin/Dashboard/AdminAdd/AdminAdministratorAdd';
+import AdminUserList from '../Admin/Dashboard/AdminUserList/AdminUserList';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path='/admin/dashboard/platform/:id' element={ <AdminPlatformGameList/> } />
           <Route path='/admin/dashboard/administrator/list' element={ <AdminAdministratorList/> } />
           <Route path='/admin/dashboard/administrator/add' element={ <AdminAdministratorAdd/> } />
+          <Route path='/admin/dashboard/user/list' element={ <AdminUserList/> } />
           
 
           <Route path='/categories/:id' element={ <CatgoryPage /> } />
