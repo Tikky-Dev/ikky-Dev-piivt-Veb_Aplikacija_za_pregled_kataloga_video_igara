@@ -29,8 +29,10 @@ export default class UserService extends BaseService<UserModel, IUserAdapterOpti
         user.userId         = +data?.user_id;
         user.email          = data?.email;
         user.password   = data?.password_hash;
-        user.name       = data?.forename;
-        user.surname        = data?.surname;
+        user.name       = data?.name;
+        user.surname        = data?.surename;
+        user.address        = data?.address;
+        user.place          = data?.place;
         user.isActive       = +data?.is_active === 1;
         user.activationCode = data?.activation_code ? data?.activation_code : null;
         user.passwordResetCode = data?.password_reset_code ? data?.password_reset_code : null;

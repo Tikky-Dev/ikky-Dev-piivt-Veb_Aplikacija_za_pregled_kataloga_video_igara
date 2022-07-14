@@ -8,6 +8,7 @@ import UserRouter from './components/user/UserRouter.router';
 import { readFileSync } from 'fs';
 import { MailConfigurationParameters } from './config.mail';
 import AuthRouter from './components/auth/AuthRouter.router';
+import ReviewRouter from './components/review/ReviewRouter.router';
 
 const DevConfig: IConfig = {
     server: {
@@ -45,6 +46,7 @@ const DevConfig: IConfig = {
         new AdministratorRouter(),
         new UserRouter(),
         new AuthRouter(),
+        new ReviewRouter()
     ],
     fileUploads: {
         maxFiles: 5,
