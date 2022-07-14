@@ -63,15 +63,26 @@ MySQL baza:
 - Odobravanje komentara
 - Uredjivanje igara
     - Dodavanje igara
+    - Dodavanje kategorija igri
+    - Dodavanje platformi igri
     - izmena igara
     - deaktiviranje igara
     - Upravljanje fotografijama
         - Dodavanje fotografija
         - izmena fotografija
+- Odjavi
 
 **Korisnik**
 
-...
+- Pregled
+    - igara
+    - kategorija
+    - platformi
+    - ocena
+- Oceni igru
+- Izmeni komentar
+- Izmeni svoje podatke
+- Odjavi
 
 **Posetilac**
 
