@@ -23,6 +23,8 @@ import AdminGamePlatformAdd from '../Admin/Dashboard/AdminGameAdd/AdminGamePlatf
 import { Provider } from 'react-redux';
 import AppStore from '../../stores/AppStore';
 import AdministratorLoginPage from '../Admin/AdminLogIn/AdminLogin';
+import GameList from '../Game/GameList';
+import PlatformList from '../Platform/PlatformList/PlatofrmList';
 
 function App() {
   return (
@@ -49,6 +51,9 @@ function App() {
             <Route path='/admin/dashboard/game/add' element={ <AdminGameAdd/> } />
             <Route path='/admin/dashboard/game/:id/category/add' element={ <AdminGameCategoryAdd/> } />
             <Route path='/admin/dashboard/game/:id/platform/add' element={ <AdminGamePlatformAdd/> } />
+            <Route path='/games' element={ <GameList/> } />
+            <Route path='/platforms' element={ <PlatformList/> } />
+            
             
 
             <Route path='/categories/:id' element={ <CatgoryPage /> } />

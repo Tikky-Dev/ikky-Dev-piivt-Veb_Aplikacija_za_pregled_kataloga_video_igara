@@ -14,6 +14,8 @@ export default function MenuVisitor() {
                         <Link className="nav-item nav-link" to="/auth/user/login">User login</Link>
                         <Link className="nav-item nav-link" to="/auth/user/register">User register</Link>
                         <Link className="nav-item nav-link" to="/categories">Categories</Link>
+                        <Link className="nav-item nav-link" to="/games">Games</Link>
+                        <Link className="nav-item nav-link" to="/platforms">Platofrms</Link>
                         <Link className="nav-item nav-link" to="/contact">Contact</Link>
                         <Link className="nav-item nav-link" to="/auth/admin/login">Admin login</Link>
                     </div>

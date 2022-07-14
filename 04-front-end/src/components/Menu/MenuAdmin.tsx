@@ -21,7 +21,6 @@ export default function MenuAdmin(){
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
                     <Link className="nav-item nav-link" to="/admin/dashboard">Admin Dashboard</Link>
-                    <Link className="nav-item nav-link" to="/categories">Categories</Link>
                     <Link className="nav-item nav-link" to="/contact">Contact</Link>
 
                     <button className='btn btn-primary' onClick={() => doLogOut()}>Logout</button>

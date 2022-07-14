@@ -1,36 +1,36 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import api from '../../../api/api';
-import ICategory from '../../../models/ICategory.model';
+import IPlatform from '../../../models/IPlatform.model';
 import IGame from '../../../models/IGame.model';
 import GamePreview from '../../Game/GamePreciew';
 
-interface ICategoryPageURLParams extends Record<string, string|undefined>{
+interface IPlatformPageURLParams extends Record<string, string|undefined>{
     id: string;
 }
 
 function CatgoryPage(){
-    const [category, setCategory] = useState<ICategory|null>(null);
+    const [platform, setPlatform] = useState<IPlatform|null>(null);
     const [games, setGames] = useState<IGame[]>([]);
     const [ errorMessage, setErrorMessage ] = useState<string>("");
     const [ loading, setLoading ] = useState<boolean>(false);
 
-    const params = useParams<ICategoryPageURLParams>();
+    const params = useParams<IPlatformPageURLParams>();
 
     useEffect(() => {
         setLoading(true);
 
-        api("get", "/api/category/" + params.id, "user")
+        api("get", "/api/platform/" + params.id, "user")
         .then(apiResponse => {
             if(apiResponse.status === "error"){
-                throw { message: "Unknown error while loading category", }
+                throw { message: "Unknown error while loading platform", }
             }
             
-            setCategory(apiResponse.data);
+            setPlatform(apiResponse.data);
             setGames(apiResponse.data.games)
         })
         .catch(err => {
-            setErrorMessage(err?.message ?? "Unknown error while loading category")
+            setErrorMessage(err?.message ?? "Unknown error while loading platform")
         })
         .finally(() => {
                 setLoading(false);
@@ -43,18 +43,18 @@ function CatgoryPage(){
             {loading && <p>Loading...</p>}
             {errorMessage && <p>Error: {errorMessage}</p>}
 
-            {category && (
+            {platform && (
                 <div>
-                    <h1>{category?.name}</h1>
+                    <h1>{platform?.name}</h1>
 
                     {games && (
                         <div className='row'>
-                            {games.map(g => <GamePreview key={"category-" + category.categoryId +"-game-"+g.gameId} game={g} />)}
+                            {games.map(g => <GamePreview key={"platform-" + platform.platformId +"-game-"+g.gameId} game={g} />)}
                         </div>
                     )}
 
                     {games.length === 0 && (
-                        <p>There are no games currently in this category</p>
+                        <p>There are no games currently in this platform</p>
                     )}
                     
                 </div>
@@ -65,4 +65,4 @@ function CatgoryPage(){
 }
 
 export default CatgoryPage;
-export type {ICategoryPageURLParams}
+export type {IPlatformPageURLParams}

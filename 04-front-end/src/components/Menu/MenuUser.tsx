@@ -21,6 +21,8 @@ export default function MenuUser() {
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav">
                         <Link className="nav-item nav-link" to="/categories">Categories</Link>
+                        <Link className="nav-item nav-link" to="/games">Games</Link>
+                        <Link className="nav-item nav-link" to="/platforms">Platofrms</Link>
                         <Link className="nav-item nav-link" to="/contact">Contact</Link>
                         <button className='btn btn-primary' onClick={() => doLogOut()}>Logout</button>
                     </div>
