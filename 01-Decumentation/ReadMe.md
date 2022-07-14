@@ -41,7 +41,7 @@ MySQL baza:
 
 **Administrator**
 
- - Uredjivanje Kategorija:
+- Uredjivanje Kategorija:
     - Dodavanje nove kategorije
     - Izmena postojecih kategorija
     - Pregled svih postojecih kategorija
@@ -54,11 +54,32 @@ MySQL baza:
     - Izmena postojecih admina
     - Pregled svih postojecih admina
     - deaktiviranje admina
+- Uredjivanje Korisnika:
+    - Dodavanje novog korisnika
+    - Izmena postojecih korisnika
+        - Izmena imena i prezimena
+    - Pregled svih postojecih korisnika
+    - deaktiviranje admina
+- Odobravanje komentara
+- Uredjivanje igara
+    - Dodavanje igara
+    - izmena igara
+    - deaktiviranje igara
+    - Upravljanje fotografijama
+        - Dodavanje fotografija
+        - izmena fotografija
 
 **Korisnik**
 
 ...
 
 **Posetilac**
-
-...
+    - Pregled
+        - igara
+        - kategorija
+        - platformi
+        - ocena
+    - Registracija korisnika
+    - Logovanje
+        - kao administrator
+        - kao korisnik
