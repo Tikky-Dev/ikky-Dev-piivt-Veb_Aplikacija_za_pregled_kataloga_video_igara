@@ -20,36 +20,42 @@ import AdminPlatformGameList from '../Admin/Dashboard/AdminPlatformGameList/Admi
 import AdminGameAdd from '../Admin/Dashboard/AdminGameAdd/AdminGameAdd';
 import AdminGameCategoryAdd from '../Admin/Dashboard/AdminGameAdd/AdminGameCategoryAdd';
 import AdminGamePlatformAdd from '../Admin/Dashboard/AdminGameAdd/AdminGamePlatformAdd';
+import { Provider } from 'react-redux';
+import AppStore from '../../stores/AppStore';
+import AdministratorLoginPage from '../Admin/AdminLogIn/AdminLogin';
 
 function App() {
   return (
-    <Container className='mt-4'>
-      <Menu/>
+    <Provider store={AppStore}>
+      <Container className='mt-4'>
+        <Menu/>
 
-        <Routes>
-          <Route path='/' element={ <div></div> } />
-          <Route path='/contact' element={ <ContactPage /> } />
-          <Route path='/categories' element={ <CategoryList /> } />
-          <Route path='/auth/user/login' element={ <UserLoginPage /> } />
-          <Route path='/admin/dashboard' element={ <AdminDashboard /> } />
-          <Route path='/admin/dashboard/categories' element={ <AdminCategoryList/> } />
-          <Route path='/admin/dashboard/platform' element={ <AdminPlatformList/> } />
-          <Route path='/admin/dashboard/category/:id' element={ <AdminCategoryGameList/> } />
-          <Route path='/admin/dashboard/platform/:id' element={ <AdminPlatformGameList/> } />
-          <Route path='/admin/dashboard/administrator/list' element={ <AdminAdministratorList/> } />
-          <Route path='/admin/dashboard/administrator/add' element={ <AdminAdministratorAdd/> } />
-          <Route path='/admin/dashboard/user/list' element={ <AdminUserList/> } />
-          <Route path='/admin/dashboard/review/list' element={ <AdminReviewList/> } />
-          <Route path='/admin/dashboard/game' element={ <AdminGameList/> } />
-          <Route path='/admin/dashboard/game/add' element={ <AdminGameAdd/> } />
-          <Route path='/admin/dashboard/game/:id/category/add' element={ <AdminGameCategoryAdd/> } />
-          <Route path='/admin/dashboard/game/:id/platform/add' element={ <AdminGamePlatformAdd/> } />
-          
+          <Routes>
+            <Route path='/' element={ <div></div> } />
+            <Route path='/contact' element={ <ContactPage /> } />
+            <Route path='/categories' element={ <CategoryList /> } />
+            <Route path='/auth/user/login' element={ <UserLoginPage /> } />
+            <Route path='/auth/admin/login' element={ <AdministratorLoginPage /> } />
+            <Route path='/admin/dashboard' element={ <AdminDashboard /> } />
+            <Route path='/admin/dashboard/categories' element={ <AdminCategoryList/> } />
+            <Route path='/admin/dashboard/platform' element={ <AdminPlatformList/> } />
+            <Route path='/admin/dashboard/category/:id' element={ <AdminCategoryGameList/> } />
+            <Route path='/admin/dashboard/platform/:id' element={ <AdminPlatformGameList/> } />
+            <Route path='/admin/dashboard/administrator/list' element={ <AdminAdministratorList/> } />
+            <Route path='/admin/dashboard/administrator/add' element={ <AdminAdministratorAdd/> } />
+            <Route path='/admin/dashboard/user/list' element={ <AdminUserList/> } />
+            <Route path='/admin/dashboard/review/list' element={ <AdminReviewList/> } />
+            <Route path='/admin/dashboard/game' element={ <AdminGameList/> } />
+            <Route path='/admin/dashboard/game/add' element={ <AdminGameAdd/> } />
+            <Route path='/admin/dashboard/game/:id/category/add' element={ <AdminGameCategoryAdd/> } />
+            <Route path='/admin/dashboard/game/:id/platform/add' element={ <AdminGamePlatformAdd/> } />
+            
 
-          <Route path='/categories/:id' element={ <CatgoryPage /> } />
-        </Routes>
+            <Route path='/categories/:id' element={ <CatgoryPage /> } />
+          </Routes>
 
-    </Container>
+      </Container>
+    </Provider>
   );
 }
 

@@ -97,7 +97,7 @@ export default function AdminGamePlatformAdd() {
             });
         });
 
-        navigate("/admin/dashboard/game/" + params.id +"/platform/add", {
+        navigate("/admin/dashboard/game", {
             replace: true,
         });
     };
