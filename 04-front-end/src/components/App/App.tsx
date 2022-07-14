@@ -17,6 +17,9 @@ import AdminReviewList from '../Admin/Dashboard/AdminReviewList/AdminReviewlist'
 import AdminGameList from '../Admin/Dashboard/AdminGameList/AdminGameList';
 import AdminCategoryGameList from '../Admin/Dashboard/AdminCategoryGameList/AdminCategoryGameList';
 import AdminPlatformGameList from '../Admin/Dashboard/AdminPlatformGameList/AdminPlatformGameList';
+import AdminGameAdd from '../Admin/Dashboard/AdminGameAdd/AdminGameAdd';
+import AdminGameCategoryAdd from '../Admin/Dashboard/AdminGameAdd/AdminGameCategoryAdd';
+import AdminGamePlatformAdd from '../Admin/Dashboard/AdminGameAdd/AdminGamePlatformAdd';
 
 function App() {
   return (
@@ -38,6 +41,9 @@ function App() {
           <Route path='/admin/dashboard/user/list' element={ <AdminUserList/> } />
           <Route path='/admin/dashboard/review/list' element={ <AdminReviewList/> } />
           <Route path='/admin/dashboard/game' element={ <AdminGameList/> } />
+          <Route path='/admin/dashboard/game/add' element={ <AdminGameAdd/> } />
+          <Route path='/admin/dashboard/game/:id/category/add' element={ <AdminGameCategoryAdd/> } />
+          <Route path='/admin/dashboard/game/:id/platform/add' element={ <AdminGamePlatformAdd/> } />
           
 
           <Route path='/categories/:id' element={ <CatgoryPage /> } />

@@ -1,4 +1,5 @@
 import axios, { AxiosResponse } from "axios";
+import { Config } from "../config";
 
 export type IApiMethod = "get" | "post" | "put" | "delete";
 export type IApiRole = "user" | "administrator";
@@ -20,7 +21,7 @@ function api(
     return new Promise(resolve => {
         axios({
             method: method,
-            baseURL: "http://localhost:10000",
+            baseURL: Config.API_PATH,
             url: path,
             data: data ? JSON.stringify(data) : "",
             headers: {
@@ -45,6 +46,31 @@ interface IApiArguments{
     role: IApiRole,
     data: any | undefined, 
     attemptToRefreshToken: boolean,
+}
+
+export function apiForm(
+    method: IApiMethod,
+    path: string,
+    role: IApiRole,
+    data: FormData,
+    attemptToRefreshToken: boolean = true,
+): Promise<IApiResponse> {
+    return new Promise(resolve => {
+        axios({
+            method: method,
+            baseURL: Config.API_PATH,
+            url: path,
+            data: data,
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + "AppStore.getState().auth.authToken",
+            },
+        })
+        .then(res => handleApiResponse(res, resolve))
+        .catch(err => handleApiError(err, resolve, {
+            method, path, role, data, attemptToRefreshToken,
+        }));
+    });
 }
 
 function handleApiError (error: any, resolve: (value: IApiResponse | PromiseLike<IApiResponse>) => void, args: IApiArguments){
