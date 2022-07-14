@@ -41,8 +41,8 @@ export default function GameList() {
                     <td>
                         <div className="col col-4">
                             <div className="btn-group w-100">
-                                <Link className="btn btn-primary" to={"/admin/dashboard/game/"+props.game.gameId}>See all</Link>
-                                <Link className="btn btn-secondary" to={"/admin/dashboard/game/review/add"+props.game.gameId}>
+                                <Link className="btn btn-primary" to={"/games/"+props.game.gameId}>See all</Link>
+                                <Link className="btn btn-secondary" to={"/game/review/add"+props.game.gameId}>
                                     Add review
                                 </Link>
                             </div>

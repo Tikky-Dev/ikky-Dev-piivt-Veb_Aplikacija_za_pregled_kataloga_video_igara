@@ -25,6 +25,7 @@ import AppStore from '../../stores/AppStore';
 import AdministratorLoginPage from '../Admin/AdminLogIn/AdminLogin';
 import GameList from '../Game/GameList';
 import PlatformList from '../Platform/PlatformList/PlatofrmList';
+import Game from '../Game/Game';
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
             <Route path='/admin/dashboard/game/:id/category/add' element={ <AdminGameCategoryAdd/> } />
             <Route path='/admin/dashboard/game/:id/platform/add' element={ <AdminGamePlatformAdd/> } />
             <Route path='/games' element={ <GameList/> } />
+            <Route path='/games/:id' element={ <Game/> } />
             <Route path='/platforms' element={ <PlatformList/> } />
             
             
