@@ -2,9 +2,9 @@ import { faSquare, faSquareCheck } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import api from "../../../api/api";
-import IPlatform from "../../../models/IPlatform.model";
-import IGame from "../../../models/IGame.model";
+import api from "../../../../api/api";
+import IGame from "../../../../models/IGame.model";
+import IPlatform from "../../../../models/IPlatform.model";
 
 export interface IAdminPlatformGameListUrlParams extends Record<string, string | undefined> {
     id: string

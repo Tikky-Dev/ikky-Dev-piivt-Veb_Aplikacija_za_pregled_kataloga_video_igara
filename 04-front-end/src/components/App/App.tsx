@@ -8,15 +8,15 @@ import './App.sass';
 import CategoryList from '../Category/CategoryList/CategoryList';
 import CatgoryPage from '../Category/CategoryPage/CategoryPage';
 import AdminDashboard from '../Admin/Dashboard/AdminDashboard';
-import AdminCategoryList from '../Category/CategoryList/AdminDashboard/AdminCategoryList';
-import AdminCategoryGameList from '../Game/AdminCategoryGameList/AdminCategoryGameList';
+import AdminCategoryList from '../Admin/Dashboard/AdminCategoryList/AdminCategoryList';
 import AdminPlatformList from '../Platform/AdminDashboard/AdminPlatformList';
-import AdminPlatformGameList from '../Game/AdminPlatformGameList/AdminPlatformGameList';
 import AdminAdministratorList from '../Admin/Dashboard/AdminList/AdminAdministratorList';
 import AdminAdministratorAdd from '../Admin/Dashboard/AdminAdd/AdminAdministratorAdd';
 import AdminUserList from '../Admin/Dashboard/AdminUserList/AdminUserList';
 import AdminReviewList from '../Admin/Dashboard/AdminReviewList/AdminReviewlist';
 import AdminGameList from '../Admin/Dashboard/AdminGameList/AdminGameList';
+import AdminCategoryGameList from '../Admin/Dashboard/AdminCategoryGameList/AdminCategoryGameList';
+import AdminPlatformGameList from '../Admin/Dashboard/AdminPlatformGameList/AdminPlatformGameList';
 
 function App() {
   return (

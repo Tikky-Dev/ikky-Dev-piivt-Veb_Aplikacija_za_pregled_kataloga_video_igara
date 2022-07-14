@@ -52,12 +52,6 @@ export default function AdminCategoryList() {
                     <Link className="btn btn-primary btn-sm" to={ "/admin/dashboard/category/" + props.category.categoryId }>
                         List Games
                     </Link>
-
-                    &nbsp;&nbsp;
-
-                    <Link className="btn btn-primary btn-sm" to={ "/admin/dashboard/category/" + props.category.categoryId + "/items/add" }>
-                        Add Game
-                    </Link>
                 </td>
             </tr>
         );
