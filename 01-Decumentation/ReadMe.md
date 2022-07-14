@@ -22,17 +22,38 @@ Aplikacija treba da omogući administratoru da se prijavi sa svojim pristupim pa
 
 ## Baza podataka
 
-...
+MySQL baza:
 
+<img src="./DocumentationImg/PodaciOgranicenjaBazaPodataka.png"
+     alt="" />
+
+
+### ERD Dijagram
+
+<img src="./DocumentationImg/ErdDiagram.png"
+     alt="" />
 ## Use-Case dijagrami
 
-...
+<img src="./DocumentationImg/UseCase.png"
+     alt="" />
 
 ### Uloge
 
 **Administrator**
 
-...
+ - Uredjivanje Kategorija:
+    - Dodavanje nove kategorije
+    - Izmena postojecih kategorija
+    - Pregled svih postojecih kategorija
+- Uredjivanje Platformi:
+    - Dodavanje nove platforme
+    - Izmena postojecih platformi
+    - Pregled svih postojecih platformi
+- Uredjivanje Administratora:
+    - Dodavanje novog admina
+    - Izmena postojecih admina
+    - Pregled svih postojecih admina
+    - deaktiviranje admina
 
 **Korisnik**
 
