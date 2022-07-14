@@ -75,12 +75,12 @@ MySQL baza:
 
 **Posetilac**
 
-    - Pregled
-        - igara
-        - kategorija
-        - platformi
-        - ocena
-    - Registracija korisnika
-    - Logovanje
-        - kao administrator
-        - kao korisnik
+- Pregled
+    - igara
+    - kategorija
+    - platformi
+    - ocena
+- Registracija korisnika
+- Logovanje
+    - kao administrator
+    - kao korisnik
